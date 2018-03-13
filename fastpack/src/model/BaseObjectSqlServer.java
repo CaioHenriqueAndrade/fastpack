@@ -1,0 +1,115 @@
+package model;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import interfaces.Interfaces;
+import sql.SqlUtils;
+import sql.StringSql;
+
+public abstract class BaseObjectSqlServer<T> implements Interfaces.ObjectMethods<T> ,  Interfaces.GetDados<T> {
+
+	Interfaces.GetDados<T> getDados;
+	Class<T> clazz;
+	public BaseObjectSqlServer(Interfaces.GetDados<T> getDados , Class<T> clazz) {
+		// TODO Auto-generated constructor stub
+		this.getDados = getDados;
+		this.clazz = clazz;
+	}
+
+	public BaseObjectSqlServer() {
+		
+	}
+	public void setDados(Interfaces.GetDados<T> getDados , Class<T> clazz) {
+		this.getDados = getDados;
+		this.clazz = clazz;
+	}
+	
+	@Override
+	public void buscar(String where) throws Exception {
+		String select = getSelectBasic(null).append(" where ").append( where ).toString();
+		SqlUtils.buscar(select, this);
+		
+	}
+
+	@Override
+	public Collection<T> buscar(String where, String orderBy, String limit)
+			throws Exception {
+		// TODO Auto-generated method stub
+		StringBuilder select = getSelectBasic(limit, getNameTable());
+		if(where != null) {
+			select.append(" where ").append(where);
+		}
+		
+		select.append(" order by ").append(orderBy).toString();
+
+		Collection<T> collection = new ArrayList<>();
+		SqlUtils.buscar( select.toString() , new Interfaces.JustGetDados() {
+
+			@Override
+			public boolean getDados(ResultSet rs) throws Exception {
+				// TODO Auto-generated method stub
+				T classe = null;
+
+				// aqui pode dar illegalAcessException se nao tiver construtor default
+				try {
+					//classe = (T) classe.getClass().newInstance();
+					classe = clazz.newInstance();
+					
+					switch(getDados.getDados(classe, rs)) {
+					
+					case ADD_COLECTION:
+						collection.add(classe);
+						break;
+					case BREAK_LOOP:
+						return false;
+						
+					case NO_ADD_COLECTION:
+					}
+					
+							
+					
+
+					
+				} catch (InstantiationException | IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return true;
+			}
+		});
+
+		return collection;
+	}
+	
+	@Override
+	public int getDados(T instanceOfObject, ResultSet rs) throws Exception {
+		((Interfaces.JustGetDados) instanceOfObject ).getDados( rs );
+		return ADD_COLECTION;
+	}
+	
+	public static StringBuilder getSelectBasic(String limit, String nameTable) {
+		return new StringBuilder().append(SqlUtils.getSelectBasic(limit)).append(" * from " + nameTable).append(" ");
+	}
+	
+	
+	@Override
+	public Object inserir(StringSql.Insert insertSql) throws Exception {
+		// TODO Auto-generated method stub
+		SqlUtils.inserir(insertSql, this );
+		return SqlUtils.returnIdUltimoInBD( "id" , getNameTable() );
+		
+	}
+	
+	public StringBuilder getSelectBasic(String limit) {
+		return new StringBuilder().append( SqlUtils.getSelectBasic(limit) ).append( " * from " + getNameTable() ).append(" ");
+	}
+
+
+	public static final int ADD_COLECTION = 0;
+	public static final int NO_ADD_COLECTION = 1;
+	public static final int BREAK_LOOP = 2;
+}
+

@@ -1,6 +1,10 @@
 package objetos;
 
-public class Address extends ObjectBasic implements Interfaces.JustGetDadosNoSql {
+import java.sql.ResultSet;
+
+import sql.Script;
+
+public class Address extends ObjectBasic {
 
     private String street = "";
 
@@ -30,7 +34,7 @@ public class Address extends ObjectBasic implements Interfaces.JustGetDadosNoSql
 
     
 	@Override
-	public boolean getDados(Row rs) throws Exception {
+	public boolean getDados(ResultSet rs) throws Exception  {
 		// TODO Auto-generated method stub
 		setCity(			rs.getString( Script.Address.CIDADE ) 	);
 		setComplementary(	rs.getString( Script.Address.COMPLEMENTARY) );
@@ -40,7 +44,6 @@ public class Address extends ObjectBasic implements Interfaces.JustGetDadosNoSql
 		setStreet(			rs.getString( Script.Address.STREET	  )  );
 		setStreetNumber(	rs.getString( Script.Address.STREET_NUMBER ) );
 		setZipcode(			rs.getString( Script.Address.CEP 	  )  );
-		setUuidCriador(		rs.getString( Script.Address.UUIDCRIADOR ) );
 		
 		local = Local.getLocalIfExists( rs );
 		
@@ -120,12 +123,7 @@ public class Address extends ObjectBasic implements Interfaces.JustGetDadosNoSql
     public boolean isValido() {
         return getValido() == VALIDADE_TRUE;
     }
-	public String getUuidCriador() {
-		return uuidCriador;
-	}
-	public void setUuidCriador(String uuidCriador) {
-		this.uuidCriador = uuidCriador;
-	}
+
 	public Local getLocal() {
 		return local;
 	}

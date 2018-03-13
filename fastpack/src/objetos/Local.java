@@ -1,15 +1,18 @@
 package objetos;
 
+import java.sql.ResultSet;
+
 public class Local {
 
-	
-	private double latitude, longitude;
+	public static final String LATITUDE = "latitude";
+	public static final String LONGITUDE = "longitude";
+	private float latitude, longitude;
 
 	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(float latitude) {
 		this.latitude = latitude;
 	}
 
@@ -17,10 +20,23 @@ public class Local {
 		return longitude;
 	}
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
 
+	public static Local getLocalIfExists(ResultSet rs) throws Exception {
+		
+		float latitude = rs.getFloat(LATITUDE );
+		
+		if( latitude != 0 ) {
+			Local local = new Local();
+			local.setLatitude( latitude );
+			local.setLongitude( rs.getFloat( LONGITUDE ) );
+			return local;
+		}
+		
+		return null;
+	}
 
 
 
