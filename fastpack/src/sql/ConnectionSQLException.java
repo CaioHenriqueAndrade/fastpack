@@ -10,5 +10,4 @@ public class ConnectionSQLException extends Exception{
 	public ConnectionSQLException(String msg , Throwable erro) {
 		super( msg , erro );
 	}
-
 }

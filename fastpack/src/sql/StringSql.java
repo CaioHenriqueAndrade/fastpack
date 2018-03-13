@@ -32,8 +32,6 @@ public class StringSql {
 			return stringBuilder.append( " ) ").toString();
 		}
 	}
-	
-	
 	public static class Update {
 
 		private StringBuilder criandoTabela = new StringBuilder();
@@ -63,5 +61,4 @@ public class StringSql {
 
 		private boolean verifica = false;
 	}
-
 }
