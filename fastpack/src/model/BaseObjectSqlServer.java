@@ -96,7 +96,7 @@ public abstract class BaseObjectSqlServer<T> implements Interfaces.ObjectMethods
 	
 	
 	@Override
-	public Object inserir(StringSql.Insert insertSql) throws Exception {
+	public Object syncronized inserir(StringSql.Insert insertSql) throws Exception {
 		// TODO Auto-generated method stub
 		SqlUtils.inserir(insertSql, this );
 		return SqlUtils.returnIdUltimoInBD( "id" , getNameTable() );

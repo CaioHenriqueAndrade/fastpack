@@ -16,6 +16,7 @@ public class ModelAddress extends BaseObjectSqlServer<Address> {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	@Override
 	public void setDados(PreparedStatement stmt) throws SQLException {
 		// TODO Auto-generated method stub
@@ -28,7 +29,6 @@ public class ModelAddress extends BaseObjectSqlServer<Address> {
 		stmt.setString( 7, getAddress().getStreet() );
 		stmt.setString( 8, getAddress().getStreetNumber() );
 		stmt.setString( 9, getAddress() );
-
 		
 	}
 
@@ -55,8 +55,7 @@ public class ModelAddress extends BaseObjectSqlServer<Address> {
 		insertSql.addColumn( Script.Address.STREET_NUMBER);
 		insertSql.addColumn( Script.Address.IDCRIADOR);
 		
-		insertSql.build();
-
+		super.inserir( insertSql );
 	}
 	
 	public Address getAddress() {

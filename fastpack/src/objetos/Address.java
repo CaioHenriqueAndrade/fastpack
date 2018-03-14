@@ -58,7 +58,7 @@ public class Address extends ObjectBasic {
     public String getStreet() {
         return street;
     }
-
+d
     public void setStreet(String street) {
         this.street = street;
     }
