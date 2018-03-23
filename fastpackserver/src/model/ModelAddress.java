@@ -13,22 +13,24 @@ public class ModelAddress extends BaseObjectMySql<Address> {
 	private Address address;
 	
 	public ModelAddress() {
-		// TODO Auto-generated constructor stub
 	}
+	public ModelAddress(Address address) {
+		this.address = address;
+	}	
 
 	
 	@Override
 	public void setDados(PreparedStatement stmt) throws SQLException {
 		// TODO Auto-generated method stub
-		stmt.setString( 1, getAddress().getNeighborhood() );
-		stmt.setString( 2, getAddress().getZipcode() );
-		stmt.setString( 3, getAddress().getCity() );
-		stmt.setString( 4, getAddress().getComplementary() );
-		stmt.setString( 5, getAddress().getState() );
-		stmt.setString( 6, getAddress().getCountry() );
-		stmt.setString( 7, getAddress().getStreet() );
-		stmt.setString( 8, getAddress().getStreetNumber() );
-		stmt.setString( 9, getAddress() );
+		stmt.setString( 1, getAddress().getNeighborhood() 	);
+		stmt.setString( 2, getAddress().getZipcode() 		);
+		stmt.setString( 3, getAddress().getCity() 			);
+		stmt.setString( 4, getAddress().getComplementary()  );
+		stmt.setString( 5, getAddress().getState() 			);
+		stmt.setString( 6, getAddress().getCountry() 		);
+		stmt.setString( 7, getAddress().getStreet() 		);
+		stmt.setString( 8, getAddress().getStreetNumber() 	);
+		stmt.setInt( 	9, getAddress().getIdCriador() 		);
 		
 	}
 
@@ -64,6 +66,12 @@ public class ModelAddress extends BaseObjectMySql<Address> {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	@Override
+	public Class<Address> getClassTypeT() {
+		// TODO Auto-generated method stub
+		return Address.class;
 	}
 	
 }
