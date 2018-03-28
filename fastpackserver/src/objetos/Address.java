@@ -6,6 +6,8 @@ import sql.Script;
 
 public class Address extends ObjectBasic {
 
+	private int idCriador;
+	
     private String street = "";
 
     private String complementary = "";
@@ -130,6 +132,12 @@ public class Address extends ObjectBasic {
 	public void setLocal(Local local) {
 		this.local = local;
 	}
-    
+
+	public int getIdCriador() {
+		return idCriador;
+	}
+	public void setIdCriador(int id) {
+		idCriador = id;
+	}
     
 }

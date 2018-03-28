@@ -11,19 +11,13 @@ import sql.StringSql;
 public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> ,  Interfaces.GetDados<T> {
 
 	Interfaces.GetDados<T> getDados;
-	Class<T> clazz;
-	public BaseObjectMySql(Interfaces.GetDados<T> getDados , Class<T> clazz) {
+	public BaseObjectMySql(Interfaces.GetDados<T> getDados) {
 		// TODO Auto-generated constructor stub
 		this.getDados = getDados;
-		this.clazz = clazz;
 	}
 
 	public BaseObjectMySql() {
 		
-	}
-	public void setDados(Interfaces.GetDados<T> getDados , Class<T> clazz) {
-		this.getDados = getDados;
-		this.clazz = clazz;
 	}
 	
 	@Override
@@ -61,7 +55,7 @@ public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> 
 				// aqui pode dar illegalAcessException se nao tiver construtor default
 				try {
 					//classe = (T) classe.getClass().newInstance();
-					classe = clazz.newInstance();
+					classe = getClassTypeT().newInstance();
 					
 					switch(getDados.getDados(classe, rs)) {
 					

@@ -5,11 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import objetos.Pedido;
-import objetos.Usuario;
 import sql.Script;
 import sql.StringSql;
 
-public class ModelPedido extends BaseObjectMySql {
+public class ModelPedido extends BaseObjectMySql<Pedido> {
 
 		private Pedido pedido;
 		
@@ -58,5 +57,11 @@ public class ModelPedido extends BaseObjectMySql {
 			
 			
 			super.inserir( insertSql );	
+		}
+
+		@Override
+		public Class<Pedido> getClassTypeT() {
+			// TODO Auto-generated method stub
+			return Pedido.class;
 		}
 }

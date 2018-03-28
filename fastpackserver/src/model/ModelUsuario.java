@@ -8,7 +8,7 @@ import objetos.Usuario;
 import sql.Script;
 import sql.StringSql;
 
-public class ModelUsuario extends BaseObjectMySql {
+public class ModelUsuario extends BaseObjectMySql<Usuario> {
 
 	private Usuario usuario;
 	
@@ -29,8 +29,8 @@ public class ModelUsuario extends BaseObjectMySql {
 
 	@Override
 	public boolean getDados(ResultSet rs) throws SQLException, Exception {
-		// TODO Auto-generated method stub
-		return false;
+		usuario.getDados( rs );
+		return true; 
 	}
 
 	public Usuario getUsuario() {
@@ -48,6 +48,12 @@ public class ModelUsuario extends BaseObjectMySql {
 		
 		super.inserir( insertSql );	
 		
+	}
+
+	@Override
+	public Class<Usuario> getClassTypeT() {
+		// TODO Auto-generated method stub
+		return Usuario.class;
 	}
 	
 	

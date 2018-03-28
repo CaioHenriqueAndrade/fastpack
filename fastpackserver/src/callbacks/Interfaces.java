@@ -23,6 +23,7 @@ public interface Interfaces {
 	}
 	
 	interface ObjectMethods <T> {
+		Class<T> getClassTypeT();
 		void buscar(String where) throws  Exception;
 		Collection<T> buscar(String where, String orderBy, String limit) throws Exception ;
 	    Object inserir(StringSql.Insert insertSql) throws Exception;
