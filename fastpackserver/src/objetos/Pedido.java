@@ -5,8 +5,6 @@ public class Pedido {
 	private int idPedido, idPrestador, idAddressBusca, idAddressEntrega, valor, status;
 	private String descPedido, horaPostado, horaPrazo, horaRecebido;
 	
-	private Address address;	
-	
 	public int getIdPedido() {
 		return idPedido;
 	}

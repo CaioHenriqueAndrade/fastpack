@@ -7,7 +7,7 @@ import sql.Script;
 public class Address extends ObjectBasic {
 
 	private int idCriador;
-	
+
     private String street = "";
 
     private String complementary = "";
@@ -37,7 +37,6 @@ public class Address extends ObjectBasic {
     
 	@Override
 	public boolean getDados(ResultSet rs) throws Exception  {
-		// TODO Auto-generated method stub
 		setCity(			rs.getString( Script.Address.CIDADE ) 	);
 		setComplementary(	rs.getString( Script.Address.COMPLEMENTARY) );
 		setCountry(			rs.getString( Script.Address.PAIS	 )   );

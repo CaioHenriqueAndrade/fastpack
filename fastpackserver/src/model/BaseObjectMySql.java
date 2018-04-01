@@ -3,6 +3,7 @@ package model;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import interfaces.Interfaces;
 import sql.SqlUtils;
@@ -22,16 +23,33 @@ public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> 
 	
 	@Override
 	public void buscar(String where) throws Exception {
-		String select = getSelectBasic().append(" where ").append( where ).toString();
-		SqlUtils.buscar(select, this);
-		
+		buscar( null , where );
 	}
 
 	@Override
+	public void buscar(String inners, String where) throws Exception {
+		StringBuilder select = getSelectBasic();
+		if( inners != null) {
+			select.append( inners );
+		}
+		select.append(" where ").append( where ).toString();
+		SqlUtils.buscar( select.toString() , this);
+	}
+	
+	@Override
 	public Collection<T> buscar(String where, String orderBy, String limit)
 			throws Exception {
-		// TODO Auto-generated method stub
-		StringBuilder select = getSelectBasic(limit, getNameTable());
+		return buscar( null , where, orderBy, limit );
+	}
+	
+	@Override
+	public Collection<T> buscar(String inners , String where, String orderBy, String limit) throws Exception {
+		StringBuilder select = getSelectBasic();
+		
+		if(inners != null) {
+			select.append( inners );
+		}
+		
 		if(where != null) {
 			select.append(" where ").append(where);
 		}
@@ -44,7 +62,7 @@ public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> 
 			select.append(" limit ").append( limit );
 		}
 
-		Collection<T> collection = new ArrayList<>();
+		List<T> collection = new ArrayList<>();
 		SqlUtils.buscar( select.toString() , new Interfaces.JustGetDados() {
 
 			@Override
@@ -82,6 +100,7 @@ public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> 
 		});
 
 		return collection;
+
 	}
 	
 	@Override

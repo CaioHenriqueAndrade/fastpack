@@ -30,14 +30,21 @@ public interface Interfaces {
 	
 	interface ObjectMethods <T> {
 		Class<T> getClassTypeT();
+		
 		void buscar(String where) throws  Exception;
+		void buscar(String inner , String where) throws  Exception;
+		
 		Collection<T> buscar(String where, String orderBy, String limit) throws Exception ;
+		Collection<T> buscar(String inners, String where, String orderBy, String limit) throws Exception ;
+
 	    Object inserir(StringSql.Insert insertSql) throws Exception;
 	}
 	
 	interface ObjectMethodsNoSql <T> {
-		void buscar(String where) throws  Exception;
+
 		Collection<T> buscar(String where, String orderBy, String limit) throws Exception;
+		Collection<T> buscar(String inners , String where, String orderBy, String limit) throws Exception;
+
 	    Object inserir(StringSql.Insert insertSql) throws Exception;
 	}
 

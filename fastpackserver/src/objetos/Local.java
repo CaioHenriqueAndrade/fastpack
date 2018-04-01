@@ -6,13 +6,20 @@ public class Local {
 
 	public static final String LATITUDE = "latitude";
 	public static final String LONGITUDE = "longitude";
-	private float latitude, longitude;
+	private double latitude, longitude;
 
+	public Local() { }
+	public Local(String latitude, String longitude) {
+		this.latitude = Double.parseDouble( latitude );
+		this.longitude = Double.parseDouble( longitude );
+	}
+	
+	
 	public double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
@@ -20,18 +27,18 @@ public class Local {
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
 	public static Local getLocalIfExists(ResultSet rs) throws Exception {
 		
-		float latitude = rs.getFloat(LATITUDE );
+		double latitude = rs.getDouble(LATITUDE );
 		
 		if( latitude != 0 ) {
 			Local local = new Local();
 			local.setLatitude( latitude );
-			local.setLongitude( rs.getFloat( LONGITUDE ) );
+			local.setLongitude( rs.getDouble( LONGITUDE ) );
 			return local;
 		}
 		

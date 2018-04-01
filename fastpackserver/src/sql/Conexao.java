@@ -7,10 +7,9 @@ import java.sql.SQLException;
 class Conexao {
 
 	public Conexao() {
-		// TODO Auto-generated constructor stub
 	}
 	
-	public Connection getConnection() throws SQLException {
+	public Connection getConnection5() throws SQLException {
 
         String hostName = "localhost";
         String dbName = "events";
@@ -57,5 +56,37 @@ class Conexao {
 		}
 
 	}
+	
+	public Connection getConnection() throws SQLException {
+		
+		DriverManager.registerDriver(new com.mysql.jdbc.Driver()); // Essa linha foi a diferença return
+
+
+		String url ="jdbc:mysql://localhost:3306/fastpack";
+		
+        //String url = String.format("jdbc:mysql://%s/%s", host, database);
+
+        /*
+        String host = "servermysql.mysql.database.azure.com";
+        String database = "events";
+        String user = "uevents@servermysql";
+        String password = "SenhaDataBase1";
+
+        
+        // Set connection properties.
+        Properties properties = new Properties();
+        properties.setProperty("user", user);
+        properties.setProperty("password", password);
+        properties.setProperty("useSSL", "true");
+        properties.setProperty("verifyServerCertificate", "true");
+        properties.setProperty("requireSSL", "false"); */
+
+        // get connection
+        return DriverManager.getConnection(url, "fastpack", "123456");
+        
+//        return DriverManager.getConnection(url, properties);
+	}
+	
+
 
 }

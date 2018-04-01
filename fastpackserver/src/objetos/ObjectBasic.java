@@ -10,5 +10,14 @@ public abstract class ObjectBasic implements JustGetDados {
 		// TODO Auto-generated constructor stub
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
 	
 }

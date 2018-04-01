@@ -7,12 +7,27 @@ import sql.Script;
 
 public class Usuario extends ObjectBasic {
 
-	private int idUser, tipo, status;
+	public static final int RESPONSE_LOGIN_ERROR = 473;
+	public static final int TIPO_PRESTADOR = 1;
+	public static final int TIPO_NORMAL    = 0;
+
+	
+	
+	private int tipo, status;
 	private String cpf, password;
 	
+	public Usuario(Usuario usuario) {
+		usuario.setId( usuario.getId() );
+		usuario.setTipo(usuario.getTipo() );
+		usuario.setStatus(usuario.getStatus());
+		usuario.setCpf(usuario.getCpf());
+		usuario.setPassword(usuario.getPassword());
+	}
+	public Usuario() {}
+
 	@Override
 	public boolean getDados(ResultSet rs) throws SQLException, Exception {
-		setIdUser( 	rs.getInt(    Script.Usuario.ID    ) );
+		setId( 	rs.getInt(    Script.Usuario.ID    ) );
 		setTipo(	rs.getInt(    Script.Usuario.TIPO  ) );
 		setStatus(	rs.getInt(    Script.Usuario.STATUS) );
 		setCpf(     rs.getString( Script.Usuario.CPF   ) );
@@ -20,16 +35,18 @@ public class Usuario extends ObjectBasic {
 		
 		return true;
 	}
-	
-	
-	
-	
-	public int getIdUser() {
-		return idUser;
+
+	public boolean foiBuscadoComSucessoNaBase() {
+		return getId() != 0;
 	}
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	
+	public boolean userIsPrestador() {
+		return getTipo() == TIPO_PRESTADOR;
 	}
+	public boolean userIsComum() {
+		return getTipo() == TIPO_NORMAL;
+	}	
+	
 	public int getTipo() {
 		return tipo;
 	}
@@ -54,6 +71,7 @@ public class Usuario extends ObjectBasic {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 	
 	
