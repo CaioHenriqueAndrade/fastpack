@@ -30,7 +30,9 @@ public class Script {
 		public static final String HORAPOSTADO		="horapostado";
 		public static final String HORAPRAZO		="horaprazo";
 		public static final String HORARECEBIDO		="horarecebido";
+		public static final String IDUSER			="iduser";
 	}
+	
 	public static class Address{
 	    public static final String NAMETABLE 		= "Address";
 	    public static final String ID 				= "id";

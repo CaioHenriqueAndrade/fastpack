@@ -11,10 +11,9 @@ import sql.StringSql;
 
 public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> ,  Interfaces.GetDados<T> {
 
-	Interfaces.GetDados<T> getDados;
+	//Interfaces.GetDados<T> getDados;
 	public BaseObjectMySql(Interfaces.GetDados<T> getDados) {
-		// TODO Auto-generated constructor stub
-		this.getDados = getDados;
+		//this.getDados = getDados;
 	}
 
 	public BaseObjectMySql() {
@@ -75,7 +74,7 @@ public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> 
 					//classe = (T) classe.getClass().newInstance();
 					classe = getClassTypeT().newInstance();
 					
-					switch(getDados.getDados(classe, rs)) {
+					switch( BaseObjectMySql.this.getDados(classe, rs) ) {
 					
 					case ADD_COLECTION:
 						collection.add(classe);

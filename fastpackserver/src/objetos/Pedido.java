@@ -1,16 +1,30 @@
 package objetos;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class Pedido {
-	private int idPedido, idPrestador, idAddressBusca, idAddressEntrega, valor, status;
+import sql.Script;
+
+public class Pedido extends ObjectBasic {
+	private int idUser , idPrestador, idAddressBusca, idAddressEntrega, valor, status;
 	private String descPedido, horaPostado, horaPrazo, horaRecebido;
 	
-	public int getIdPedido() {
-		return idPedido;
+	@Override
+	public boolean getDados(ResultSet rs) throws SQLException, Exception {
+		setId(				rs.getInt(Script.Pedido.IDPEDIDO ) );
+		setIdUser(			rs.getInt(Script.Pedido.IDUSER ) );
+		setIdPrestador( 	rs.getInt(Script.Pedido.IDPRESTADOR ) );
+		setIdAddressBusca(	rs.getInt(Script.Pedido.IDADDRESSBUSCA ) );
+		setIdAddressEntrega(rs.getInt(Script.Pedido.IDADDRESSENTREGA));
+		setValor(			rs.getInt(Script.Pedido.VALOR));
+		setStatus(			rs.getInt(Script.Pedido.STATUS));
+		setDescPedido(		rs.getString(Script.Pedido.DESCPEDIDO));
+		setHoraPostado(		rs.getString(Script.Pedido.HORAPOSTADO));
+		setHoraPrazo(		rs.getString(Script.Pedido.HORAPRAZO));
+		setHoraRecebido(	rs.getString(Script.Pedido.HORARECEBIDO));
+		return true;
 	}
-	public void setIdPedido(int idPedido) {
-		this.idPedido = idPedido;
-	}
+	
 	public int getIdPrestador() {
 		return idPrestador;
 	}
@@ -65,4 +79,14 @@ public class Pedido {
 	public void setHoraRecebido(String horaRecebido) {
 		this.horaRecebido = horaRecebido;
 	}
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	
 }

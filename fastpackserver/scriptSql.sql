@@ -41,7 +41,8 @@ status int,
 descPedido text,
 horaPostado DATETIME DEFAULT CURRENT_TIMESTAMP,
 horaPrazo DATETIME, 
-horaRecebido DATETIME
+horaRecebido DATETIME,
+iduser int
 );
 
 create table Address (

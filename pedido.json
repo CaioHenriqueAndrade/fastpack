@@ -1,0 +1,12 @@
+{
+ "descPedido" : "descricao qualquer do usuario",
+  "horaPostado" : "09:00",
+  "horaPrazo" : "2018-12-31 23:59:59",
+  "horaRecebido" : "09:00",
+  "idUser" : 1 ,
+  "idPrestador" : 2,
+  "idAddressBusca" : 2,
+  "idAddressEntrega" : 1,
+  "valor" : 23,
+  "status" : 1
+}
