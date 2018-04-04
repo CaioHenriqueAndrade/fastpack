@@ -13,7 +13,7 @@ drop table Address;
 
 use fastpack;
 
-create table Usuario (
+create table usuario (
 id int primary key AUTO_INCREMENT,
 status int,
 tipo int,
@@ -22,7 +22,7 @@ password text
 );
 
 
-create table UsuarioPrestador (
+create table usuarioprestador (
 	id int primary key,
 	raio int,
 	latitude double,
@@ -31,7 +31,7 @@ create table UsuarioPrestador (
 	REFERENCES usuario (id)
 );
 
-create table Pedido (
+create table pedido (
 id int primary key AUTO_INCREMENT,
 idPrestador int,
 idAddressbusca int,
@@ -45,7 +45,7 @@ horaRecebido DATETIME,
 iduser int
 );
 
-create table Address (
+create table address (
 id int primary key AUTO_INCREMENT,
 street text,
 streetNumber int,
