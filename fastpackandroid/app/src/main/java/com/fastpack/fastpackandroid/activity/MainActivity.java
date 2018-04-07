@@ -1,6 +1,7 @@
 package com.fastpack.fastpackandroid.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.fastpack.fastpackandroid.R;
 import com.fastpack.fastpackandroid.interfaces.Interfaces;
@@ -9,20 +10,24 @@ import com.fastpack.fastpackandroid.layout.LayoutMainActivity;
 public class MainActivity extends ActivityBasic {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setActionBar();
     }
 
+    @Override
+    public int getIdLayout() {
+        return R.layout.activity_main;
+    }
 
     @Override
     public Interfaces.LayoutBasicMethods getLayoutBasic() {
-        return new LayoutMainActivity();
+        return new LayoutMainActivity( this );
     }
 
     @Override
     public int getIdContainerView() {
-        return 0;
+        return R.id.container;
     }
 
 }

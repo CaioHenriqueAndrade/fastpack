@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Caio\eclipse-workspace\fastpack\fastpackandroid\app\app.iml" filepath="C:\Users\Caio\eclipse-workspace\fastpack\fastpackandroid\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastpackandroid.iml" filepath="$PROJECT_DIR$/fastpackandroid.iml" />
+      <module fileurl="file://C:\Users\Caio\eclipse-workspace\fastpack\fastpackandroid\fastpackandroid.iml" filepath="C:\Users\Caio\eclipse-workspace\fastpack\fastpackandroid\fastpackandroid.iml" />
     </modules>
   </component>
 </project>

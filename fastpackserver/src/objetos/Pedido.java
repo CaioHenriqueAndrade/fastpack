@@ -9,6 +9,23 @@ public class Pedido extends ObjectBasic {
 	private int idUser , idPrestador, idAddressBusca, idAddressEntrega, valor, status;
 	private String descPedido, horaPostado, horaPrazo, horaRecebido;
 	
+	//Quando o pedido e criado e chega ao servidor
+	public static final int STATUS_JUST_ENVIADO = 0;
+	
+	//quando esta aguardando a entrega, ja selecionado quem ira realizar
+	public static final int STATUS_AGUARDE_ENTREGA = 1;
+	
+	//quando ja esta entregue
+	public static final int STATUS_ENTREGUE		= 2;
+	
+	
+	//sobre os comentarios que serao realizados apos a finalizacao do pedido,
+	public static final int COMENTARIO_NENHUM 		= 0;
+	public static final int COMENTARIO_USER_NORMAL  = 1;
+	public static final int COMENTARIO_PRESTADOR  	= 2;
+	public static final int COMENTARIO_OK  			= 3;
+	
+	
 	@Override
 	public boolean getDados(ResultSet rs) throws SQLException, Exception {
 		setId(				rs.getInt(Script.Pedido.IDPEDIDO ) );

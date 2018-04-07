@@ -39,8 +39,7 @@ public class HtppUsuario {
 	}
 	
 
-	
-	
+	//RETORNA O LOGIN DO USUARIO VIA CPF E SENHA
 	@GET
 	@Path("{cpf}/{senha}")
 	public Response tentarLogar(@PathParam("cpf") String cpf , @PathParam("senha") String senha) {

@@ -33,6 +33,13 @@ public class Script {
 		public static final String IDUSER			="iduser";
 	}
 	
+	public static class PedidoSolicitacao {
+		public static final String NAMETABLE		="pedidosolicitacao";
+		public static final String IDPEDIDO			="idpedido";
+		public static final String IDPRESTADOR		="idprestador";
+	}
+	
+	
 	public static class Address{
 	    public static final String NAMETABLE 		= "Address";
 	    public static final String ID 				= "id";

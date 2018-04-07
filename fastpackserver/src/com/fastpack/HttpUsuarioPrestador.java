@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import interfaces.Interfaces;
 import model.ModelUsuarioPrestador;
 import objetos.Local;
+import objetos.Usuario;
 import objetos.UsuarioPrestador;
 import sql.ConnectionSQLException;
 import utils.ResponseManager;
@@ -41,4 +42,35 @@ public class HttpUsuarioPrestador {
 			
 		});
 	}
+	
+	@GET
+	@Path("{id}")
+	public Response tentarLogar( @PathParam("id") String id ) {
+		return new ResponseManager().execute(new Interfaces.ResponseCallBack() {
+
+			@Override
+			public Response getResponse() throws Exception, ConnectionSQLException {
+				ModelUsuarioPrestador modelUserP = new ModelUsuarioPrestador( new UsuarioPrestador() );
+				modelUserP.buscar( Integer.parseInt( id ) );
+				UsuarioPrestador user = modelUserP.getUsuarioPrestador();
+				
+				//se nao achou na base de dados
+				if( !user.foiBuscadoComSucessoNaBase() ) {
+					return Response.serverError().status( Usuario.RESPONSE_LOGIN_ERROR ).build();
+				}	
+				//se buscou com sucesso...
+				
+				Collection<UsuarioPrestador> collection = modelUserP.buscarProximos( user.getLocal() );
+
+				return Response.ok( new Gson().toJson( collection ) ).build();
+			
+			}
+			
+		});
+	}
+	
+
+	
+	
+	
 }

@@ -7,7 +7,7 @@ package com.fastpack.fastpackandroid.objetos;
 public class Usuario extends ObjectBasic {
 
     private int idUser, tipo, status;
-    private String cpf, password;
+    private String cpf, password, nome;
 
 
     public int getIdUser() {
@@ -48,5 +48,12 @@ public class Usuario extends ObjectBasic {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

@@ -6,6 +6,7 @@ package com.fastpack.fastpackandroid.requisicoes;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.fastpack.fastpackandroid.interfaces.Interfaces;
 import com.fastpack.fastpackandroid.model.ModelBasic;
@@ -30,7 +31,7 @@ import java.util.List;
 
 public class Requisicoes {
 
-    public static final String urlBase = "http://192.168.1.150/";
+    public static final String urlBase = "http://192.168.1.150/fastpackserver/rest/";
 
     private Interfaces.ModelBasic modelBasic;
 
