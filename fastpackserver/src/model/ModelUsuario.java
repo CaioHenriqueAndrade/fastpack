@@ -32,8 +32,7 @@ public class ModelUsuario extends BaseObjectMySql<Usuario> {
 
 	@Override
 	public boolean getDados(ResultSet rs) throws SQLException, Exception {
-		usuario.getDados( rs );
-		return true; 
+		return usuario.getDados( rs ); 
 	}
 
 
@@ -51,7 +50,7 @@ public class ModelUsuario extends BaseObjectMySql<Usuario> {
 		insertSql.addColumn( Script.Usuario.STATUS);
 		insertSql.addColumn( Script.Usuario.TIPO);	
 		
-		super.inserir( insertSql );	
+		usuario.setId( (Integer) super.inserir( insertSql )  );
 		
 	}
 

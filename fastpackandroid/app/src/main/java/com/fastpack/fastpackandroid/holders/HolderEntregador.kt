@@ -13,7 +13,7 @@ import com.fastpack.fastpackandroid.objetos.UsuarioPrestador
 
 class HolderEntregador(view: View, methods: Interfaces.AdapterRecyclerMethods) : Holder3txtCircleImageView(view, methods) {
 
-    override fun iniciarDadosNoLayout() {
+    override fun bindViewHolder() {
         imageView.setImageResource( R.drawable.profile )
         txtTitulo.text = getUsuario().nome
         txtSubtitle.text = "Entrega em sua região"
@@ -22,6 +22,7 @@ class HolderEntregador(view: View, methods: Interfaces.AdapterRecyclerMethods) :
     fun getUsuario() : Usuario {
         return `object` as UsuarioPrestador
     }
+
     override fun onClick(v: View) {
 
     }

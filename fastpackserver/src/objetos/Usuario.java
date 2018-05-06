@@ -16,6 +16,8 @@ public class Usuario extends ObjectBasic {
 	private int tipo, status;
 	private String cpf, password;
 	
+	private Local local;
+	
 	public Usuario(Usuario usuario) {
 		usuario.setId( usuario.getId() );
 		usuario.setTipo(usuario.getTipo() );
@@ -31,8 +33,10 @@ public class Usuario extends ObjectBasic {
 		setTipo(	rs.getInt(    Script.Usuario.TIPO  ) );
 		setStatus(	rs.getInt(    Script.Usuario.STATUS) );
 		setCpf(     rs.getString( Script.Usuario.CPF   ) );
+
 		setPassword(rs.getString( Script.Usuario.PASSWORD));
-		
+		setLocal (new Local()  );
+		getLocal().setLatitude(rs get );
 		return true;
 	}
 
@@ -70,6 +74,12 @@ public class Usuario extends ObjectBasic {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Local getLocal() {
+		return local;
+	}
+	public void setLocal(Local local) {
+		this.local = local;
 	}
 
 

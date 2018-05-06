@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fastpack.fastpackandroid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,13 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activity.MainActivity" android:theme="@style/Theme.Design.Light.NoActionBar">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDuYfzoIZx9FD97jJqYjHAA8BaN5f6QXLE" />
+
+
+        <activity
+            android:name=".activity.ActivityLogin"
+            android:theme="@style/Theme.Design.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"/>
+
+        <activity
+            android:name=".activity.ActivityCriarAccount"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+
+        <activity android:name=".activity.ActivityAddress"
+        android:theme="@style/Theme.Design.Light.NoActionBar"/>
+
     </application>
 
 </manifest>

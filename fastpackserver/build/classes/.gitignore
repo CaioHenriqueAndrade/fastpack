@@ -1,4 +1,3 @@
-/utils/
 /callbacks/
 /com/
 /exception/
@@ -6,3 +5,4 @@
 /model/
 /objetos/
 /sql/
+/utils/

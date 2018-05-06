@@ -24,7 +24,7 @@ public abstract class LayoutFragmentBasic implements Interfaces.LayoutFragmentBa
     @Override
     public void init(View view) {
         recuperarReferencias( view );
-        iniciarDadosNoLayout();
+        bindViewHolder();
         setOnClick();
     }
 

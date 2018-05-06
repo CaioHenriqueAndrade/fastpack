@@ -1,10 +1,12 @@
 package com.fastpack.fastpackandroid.objetos;
 
+import android.content.res.Resources;
+
 /**
  * Created by root on 28/03/18.
  */
 
-public class Address {
+public class Address extends ObjectBasic {
 
     private int idCriador;
 
@@ -32,7 +34,39 @@ public class Address {
     public static final int VALIDADE_FALSE = 0;
     public static final int VALIDADE_TRUE = 1;
 
-    public static final int KEY_UUID  = 232;
+
+    public String validate(Resources res) {
+
+        if (street.replaceAll(" ", "").length() < 5)
+            return "Precisamos que informe sua rua";
+
+        if (streetNumber.replaceAll(" ", "").equals(""))
+            return "Informa o número da residência";
+
+        if (city.replaceAll(" ", "").length() < 2)
+            return "Informe sua cidade";
+
+        /*
+        if (state.equals(res.getString(R.string.toque_para_selecionar)))
+            return "Informe seu estado";
+*/
+        if (zipcode.equals(""))
+            return "Informe seu CEP";
+
+        if (neighborhood.replaceAll(" ", "").equals("")) {
+            return "Informe o bairro!";
+        }
+
+        if (zipcode.length() < 7)
+            return "CEP esta incorreto.";
+
+
+        return null;
+    }
+
+    public boolean existsLocal() {
+        return getLocal() != null && getLocal().getLatitude() != 0;
+    }
 
     public int getIdCriador() {
         return idCriador;

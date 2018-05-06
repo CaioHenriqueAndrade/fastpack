@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/laranja6"
+        app:title="Crie sua conta"
+        app:titleTextAppearance="?android:textAppearanceLarge"/>
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="Crie uma conta e veja os entregadores próximos !"
+        android:layout_margin="15dp"
+        android:textColor="@color/laranja6"
+        android:gravity="center"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_text_layout"
+        android:layout_below="@+id/txt"
+        android:maxWidth="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/TextLabel"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp">
+
+        <com.fastpack.fastpackandroid.view.MyMaterialEditText
+            android:id="@+id/edt_senha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Senha novamente"
+            android:inputType="textPersonName"
+            android:maxLength="35"
+            android:maxLines="1"
+            app:met_maxCharacters="35"
+            app:met_primaryColor="@color/colorAccent"
+            app:met_underlineColor="@color/laranja6"  />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/facybutton_buscarlocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_text_layout"
+        android:paddingBottom="10dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="10dp"
+        fancy:fb_borderColor="@color/laranja5"
+        fancy:fb_borderWidth="2dp"
+        fancy:fb_defaultColor="@color/laranja0"
+        fancy:fb_fontIconSize="0sp"
+        fancy:fb_iconPaddingLeft="5dp"
+        fancy:fb_iconPaddingRight="5dp"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Buscar meu local"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        fancy:fb_textColor="@color/laranja5"
+        fancy:fb_textSize="30sp" />
+
+
+    <TextView
+        android:id="@+id/txt_button"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/laranja5"
+        android:textColor="#FFFFFF"
+        android:text="Criar conta"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:gravity="center"
+        />
+
+
+</RelativeLayout>

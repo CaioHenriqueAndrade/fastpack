@@ -18,15 +18,15 @@ id int primary key AUTO_INCREMENT,
 status int,
 tipo int,
 cpf text,
-password text
+password text,
+latitude double,
+longitude double
 );
 
 
 create table usuarioprestador (
 	id int primary key,
 	raio int,
-	latitude double,
-	longitude double,
 	constraint id FOREIGN KEY (id)
 	REFERENCES usuario (id)
 );

@@ -12,7 +12,7 @@ public class CreateDataBase extends SQLiteOpenHelper {
 
 
     private static final String NOME_BANCO = "fastpack";
-    private static final int VERSAO = 1;
+    private static final int VERSAO = 2;
 
     public CreateDataBase(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -21,24 +21,24 @@ public class CreateDataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL( getTableUsuario() );
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE USUARIO");
+        db.execSQL( getTableUsuario() );
     }
 
     public static String getTableUsuario() {
         CreateTableHelper helperTable = new CreateTableHelper( Script.Usuario.NAMETABLE );
-        helperTable.addAtributo( Script.Usuario.ID          , "integer primary key autoincrement" );
+        helperTable.addAtributo( Script.Usuario.ID          , "integer primary key" );
         helperTable.addAtributo( Script.Usuario.LATITUDE    , "double");
         helperTable.addAtributo( Script.Usuario.LONGITUDE   , "double");
         helperTable.addAtributo( Script.Usuario.NOME        , "text");
         helperTable.addAtributo( Script.Usuario.PASSWORD    , "text");
-        helperTable.addAtributo( Script.Usuario.STATUS      , "text");
-        helperTable.addAtributo( Script.Usuario.TIPO   , "text");
-
+        helperTable.addAtributo( Script.Usuario.STATUS      , "int");
+        helperTable.addAtributo( Script.Usuario.TIPO   , "int");
+        helperTable.addAtributo( Script.Usuario.CPF    , "text");
         return helperTable.build();
     }
 

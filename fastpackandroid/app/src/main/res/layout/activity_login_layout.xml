@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:background="@color/laranja0"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/laranja6"
+        app:title="Primeiros passos"
+        app:titleTextAppearance="?android:textAppearanceLarge"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="Faça pedidos de entrega e seja correspondido rapidamente!"
+        android:layout_margin="15dp"
+        android:textColor="@color/laranja6"
+        android:gravity="center"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/TextLabel"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp">
+
+        <com.fastpack.fastpackandroid.view.MyMaterialEditText
+            android:id="@+id/edt_cpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Seu CPF"
+            android:inputType="textPersonName"
+            android:maxLength="35"
+            android:maxLines="1"
+            app:met_maxCharacters="35"
+            app:met_primaryColor="@color/colorAccent"
+            app:met_underlineColor="@color/laranja6"  />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:theme="@style/TextLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp">
+
+        <com.fastpack.fastpackandroid.view.MyMaterialEditText
+            android:id="@+id/edt_senha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Senha"
+            android:inputType="textPersonName"
+            android:maxLength="35"
+            android:maxLines="1"
+            app:met_maxCharacters="35"
+            app:met_primaryColor="@color/colorAccent"
+            app:met_underlineColor="@color/laranja6" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        >
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/facybutton_criar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginLeft="30dp"
+        android:paddingTop="10dp"
+        fancy:fb_borderColor="@color/laranja5"
+        fancy:fb_borderWidth="2dp"
+        fancy:fb_defaultColor="@color/laranja0"
+        fancy:fb_focusColor="#5577bd"
+        fancy:fb_fontIconSize="0sp"
+        fancy:fb_iconPaddingLeft="5dp"
+        fancy:fb_iconPaddingRight="5dp"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Criar"
+        fancy:fb_textColor="@color/laranja5"
+        fancy:fb_textSize="30sp" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/facybutton_entrar"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="10dp"
+            fancy:fb_borderColor="@color/laranja5"
+            fancy:fb_borderWidth="2dp"
+            fancy:fb_defaultColor="@color/laranja0"
+            fancy:fb_fontIconSize="0sp"
+            fancy:fb_iconPaddingLeft="5dp"
+            fancy:fb_iconPaddingRight="5dp"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="30dp"
+            fancy:fb_text="Entrar"
+            fancy:fb_textColor="@color/laranja5"
+            fancy:fb_textSize="30sp" />
+    </RelativeLayout>
+
+</LinearLayout>

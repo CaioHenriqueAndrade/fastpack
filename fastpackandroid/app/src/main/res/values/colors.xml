@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="transparent">@android:color/transparent</color>
+    <color name="laranja0">#fff2e6</color>
+    <color name="laranja5">#ff9933</color>
+    <color name="laranja6">#ff8c1a</color>
 </resources>

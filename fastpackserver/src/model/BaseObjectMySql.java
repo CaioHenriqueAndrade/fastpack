@@ -115,7 +115,6 @@ public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> 
 	
 	@Override
 	public Object inserir(StringSql.Insert insertSql) throws Exception {
-		// TODO Auto-generated method stub
 		SqlUtils.inserir(insertSql, this );
 		return SqlUtils.returnIdUltimoInBD( "id" , getNameTable() );
 		

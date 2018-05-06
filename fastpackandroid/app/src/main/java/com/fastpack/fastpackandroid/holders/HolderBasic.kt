@@ -20,7 +20,7 @@ abstract class HolderBasic(view: View, val methods: Interfaces.AdapterRecyclerMe
 
     override fun recuperarReferencias(view: View) {}
 
-    override fun iniciarDadosNoLayout() {
+    override fun bindViewHolder() {
 
     }
 

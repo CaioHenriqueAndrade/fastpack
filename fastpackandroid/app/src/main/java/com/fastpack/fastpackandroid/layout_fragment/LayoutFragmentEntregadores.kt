@@ -31,7 +31,7 @@ class LayoutFragmentEntregadores(methods: Interfaces.LayoutFragmentBasic) : Layo
         recyclerView = view.findViewById(R.id.recyclerview)
     }
 
-    override fun iniciarDadosNoLayout() {
+    override fun bindViewHolder() {
 
         //tenta pegar a lista do servidor se nao exists
         //se nao seta no adapter
@@ -44,7 +44,7 @@ class LayoutFragmentEntregadores(methods: Interfaces.LayoutFragmentBasic) : Layo
         if (listUsuariosPrestador == null)
             initSearch()
         else
-            adapter.list = listUsuariosPrestador!!
+            adapter.list = listUsuariosPrestador
     }
 
     private fun initSearch() {
@@ -66,7 +66,6 @@ class LayoutFragmentEntregadores(methods: Interfaces.LayoutFragmentBasic) : Layo
         when (param) {
             ModelUsuarioPrestador.PARAM_PRESTADORES -> {
                 activity.runOnUiThread({ onPostRequisicao( responseCode , `object` ) })
-
             }
         }
     }

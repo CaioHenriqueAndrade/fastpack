@@ -18,10 +18,12 @@ public class MyCursor implements BancoManager.MyCursorMethods {
         int columIndex = cursor.getColumnIndex(columnName);
 
         if(columIndex == -1) throw new IllegalArgumentException("NOT IMPLEMENTED COLUMN " + columnName + " IN TABLE " );
-
         return cursor.getString( columIndex );
     }
 
+    public double getDouble(String columnName) {
+        return cursor.getDouble( cursor.getColumnIndex(columnName) );
+    }
     @Override
     public int getInt(String columnName) {
         return cursor.getInt( cursor.getColumnIndex(columnName) );

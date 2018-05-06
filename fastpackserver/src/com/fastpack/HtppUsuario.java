@@ -30,9 +30,17 @@ public class HtppUsuario {
 
 			@Override
 			public Response getResponse() throws Exception, ConnectionSQLException {
-				Usuario usuario = new Gson().fromJson( json , Usuario.class );
-				new ModelUsuario( usuario ).inserir( true );
-				return Response.ok().build();
+				Gson gson = new Gson();
+				Usuario usuario = gson.fromJson( json , Usuario.class );
+				try {
+					new ModelUsuario( usuario ).inserir( true );
+				} catch( IllegalLoginException e ) {
+					return Response.serverError().status( Usuario.RESPONSE_LOGIN_ERROR ).build();
+				}
+				
+				System.out.println("inserido com sucesso " + usuario.getId() + "  " + usuario.getCpf() );
+				
+				return Response.ok( gson.toJson( usuario ) ).build();
 			}
 			
 		});

@@ -29,6 +29,6 @@ class AdapterTabbed(adapterTabbed: Interfaces.AdapterTabbed) : AdapterTabbedBasi
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        return "Fragment"
+        return "Fragment $position"
     }
 }

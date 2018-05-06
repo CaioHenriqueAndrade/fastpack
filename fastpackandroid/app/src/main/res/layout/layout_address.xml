@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/container_address"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_address"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/laranja6"
+        android:textAppearance="?android:textAppearanceMedium"
+        app:subtitleTextAppearance="?android:textAppearanceSmall"
+        app:subtitleTextColor="#FFFFFF"
+        app:title="Sobre endereço de entrega"
+        app:titleTextColor="#FFFFFF" />
+
+    <include layout="@layout/layout_address_header" />
+
+    <View
+        android:layout_width="match_parent"
+
+        android:layout_height="1dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/laranja5" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+     <com.fastpack.fastpackandroid.view.MyEditText
+            android:id="@+id/layout_address_rua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sua rua"
+            android:inputType="textPostalAddress"
+            android:maxLength="120" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <EditText
+            android:id="@+id/layout_address_bairro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Bairro"
+            android:maxLength="70" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <EditText
+            android:id="@+id/layout_address_complemento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Complemento se houver"
+            android:maxLength="70" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="4">
+
+            <EditText
+                android:id="@+id/layout_address_cidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Cidade"
+                android:maxLength="70" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="2">
+
+            <EditText
+                android:id="@+id/layout_address_cep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CEP"
+                android:inputType="number"
+                android:maxLength="8" />
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            app:layout_widthPercent="33%">
+
+            <EditText
+                android:id="@+id/layout_address_numero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Número Residencial"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:inputType="textNoSuggestions"
+                android:maxLength="7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/layout_seu_estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Seu estado:"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/layout_address_estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_seu_estado"
+            android:layout_marginLeft="25dp"
+            android:text="toque para selecionar"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/laranja6" />
+    </android.support.percent.PercentRelativeLayout>
+
+</LinearLayout>

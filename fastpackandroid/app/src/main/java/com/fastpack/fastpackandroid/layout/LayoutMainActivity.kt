@@ -9,6 +9,7 @@ import com.fastpack.fastpackandroid.R
 import com.fastpack.fastpackandroid.activity.ActivityBasic
 import com.fastpack.fastpackandroid.adapters.AdapterTabbed
 import com.fastpack.fastpackandroid.interfaces.Interfaces
+import com.fastpack.fastpackandroid.objetos.Usuario
 
 /**
  * Created by root on 28/03/18.
@@ -17,10 +18,16 @@ import com.fastpack.fastpackandroid.interfaces.Interfaces
 class LayoutMainActivity( m : Interfaces.ActivityGetter ) : LayoutMainBasic( m ){
 
 
+    private var user : Usuario? = null
+
     private val adapterTabbed = AdapterTabbed( this )
 
-    override fun iniciarDadosNoLayout() {
+    override fun bindViewHolder() {
         adapterTabbed.init()
+    }
+
+    fun getUsuario(): Usuario? {
+        return null
     }
 
 }
