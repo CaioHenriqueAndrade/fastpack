@@ -29,6 +29,10 @@ class AdapterTabbed(adapterTabbed: Interfaces.AdapterTabbed) : AdapterTabbedBasi
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        return "Fragment $position"
+        return when( position ) {
+            0 -> "Entregadores"
+            1 -> "Meus pedidos"
+            else -> throw IllegalStateException("not implemente name of tab")
+        }
     }
 }

@@ -111,6 +111,7 @@ abstract class LayoutCriarAccountLocal(methods: Interfaces.ActivityGetter) : Lay
 
     fun whenReceivAddress(ad: Address) {
         this.address = ad
+        whenClicked()
     }
 
 }

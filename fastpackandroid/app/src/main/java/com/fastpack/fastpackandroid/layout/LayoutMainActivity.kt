@@ -8,6 +8,7 @@ import android.view.View
 import com.fastpack.fastpackandroid.R
 import com.fastpack.fastpackandroid.activity.ActivityBasic
 import com.fastpack.fastpackandroid.adapters.AdapterTabbed
+import com.fastpack.fastpackandroid.base_dados.BancoManager
 import com.fastpack.fastpackandroid.interfaces.Interfaces
 import com.fastpack.fastpackandroid.objetos.Usuario
 
@@ -26,8 +27,13 @@ class LayoutMainActivity( m : Interfaces.ActivityGetter ) : LayoutMainBasic( m )
         adapterTabbed.init()
     }
 
-    fun getUsuario(): Usuario? {
-        return null
+    @Synchronized
+    fun getUsuario(): Usuario {
+        if( user == null ) {
+            user = Usuario()
+            user!!.buscar( BancoManager( activity ) , null )
+        }
+        return user!!
     }
 
 }

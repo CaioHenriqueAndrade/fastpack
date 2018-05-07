@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:titleTextAppearance="?android:textAppearanceLarge"
+        android:background="@color/laranja6"
+        app:title="Crie seu pedido de entrega"/>
+
+    <TextView
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:text="Faça um pedido e aguarde um entregador aceitar seu pedido para buscar no endereço solicitado :)"/>
+
+
+</RelativeLayout>
