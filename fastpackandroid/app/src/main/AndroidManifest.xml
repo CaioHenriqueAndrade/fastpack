@@ -38,7 +38,8 @@
         <activity
             android:name=".activity.ActivityPedido"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
-        <activity android:name=".activity.ActivityPedidoFInalizar"></activity>
+        <activity android:name=".activity.ActivityPedidoFInalizar" />
+        <activity android:name=".activity.ActivityPedidoAceitar"></activity>
     </application>
 
 </manifest>

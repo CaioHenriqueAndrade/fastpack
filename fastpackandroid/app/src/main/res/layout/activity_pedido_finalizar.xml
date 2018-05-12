@@ -12,14 +12,35 @@
         android:background="@color/laranja6"
         app:title="Crie seu pedido de entrega"/>
 
-    <TextView
+    <EditText
+        android:id="@+id/edittext"
         android:layout_below="@+id/toolbar"
-        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        android:maxLength="500"
+        android:hint="Específique aqui sua entrega com o máximo de detalhes. Ex. Caixa grande (1 metro x 1 metro) de aproximadamente 2 kilos"/>
+
+
+    <TextView
+        android:layout_below="@+id/edittext"
+        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:text="Faça um pedido e aguarde um entregador aceitar seu pedido para buscar no endereço solicitado :)"/>
+        android:text="Total R$ 34,00"
+        android:textAppearance="?android:textAppearanceLarge"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Fazer o pedido"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@color/laranja6"/>
+
 
 
 </RelativeLayout>
