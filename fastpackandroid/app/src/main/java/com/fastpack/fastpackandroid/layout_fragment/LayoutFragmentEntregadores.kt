@@ -7,6 +7,7 @@ import com.fastpack.fastpackandroid.R
 import com.fastpack.fastpackandroid.adapter_recycler.AdapterRecyclerEntregadores
 
 import com.fastpack.fastpackandroid.interfaces.Interfaces
+import com.fastpack.fastpackandroid.layout.LayoutMainActivity
 import com.fastpack.fastpackandroid.model.ModelUsuarioPrestador
 import com.fastpack.fastpackandroid.objetos.Usuario
 import com.fastpack.fastpackandroid.objetos.UsuarioPrestador
@@ -17,7 +18,6 @@ import com.fastpack.fastpackandroid.utils.UtilsLayoutManager
  */
 
 class LayoutFragmentEntregadores(methods: Interfaces.LayoutFragmentBasic) : LayoutFragmentBasic(methods), Interfaces.ModelUtils {
-
 
     private lateinit var recyclerView: RecyclerView
     private val adapter = AdapterRecyclerEntregadores(this)
@@ -52,8 +52,7 @@ class LayoutFragmentEntregadores(methods: Interfaces.LayoutFragmentBasic) : Layo
     }
 
     private fun getUsuario(): Usuario {
-        //depois coloca aqui para buscar corretamente o usuario
-        return Usuario()
+        return LayoutMainActivity.getUsuario( activity )
     }
 
     private fun initRecycler() {
@@ -73,6 +72,7 @@ class LayoutFragmentEntregadores(methods: Interfaces.LayoutFragmentBasic) : Layo
     fun onPostRequisicao(responseCode : Int , obj : Any? ) {
         if (responseCode == 200) {
             listUsuariosPrestador = obj as MutableList<UsuarioPrestador>
+            adapter.list = listUsuariosPrestador
         } else {
             makeText("Não houve conexão com o servidor")
         }

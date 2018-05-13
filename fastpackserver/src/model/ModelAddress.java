@@ -57,7 +57,7 @@ public class ModelAddress extends BaseObjectMySql<Address> {
 		insertSql.addColumn( Script.Address.STREET_NUMBER);
 		insertSql.addColumn( Script.Address.IDCRIADOR);
 		
-		super.inserir( insertSql );
+		getAddress().setId( (Integer) super.inserir( insertSql ) );
 	}
 	
 	public Address getAddress() {

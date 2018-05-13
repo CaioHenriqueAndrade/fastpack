@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 import interfaces.Interfaces;
+import objetos.Address;
 import objetos.Pedido;
 import sql.Script;
 import sql.StringSql;
+import utils.UtilsWhereLocation;
 
 public class ModelPedido extends BaseObjectMySql<Pedido> {
 
@@ -36,7 +38,6 @@ public class ModelPedido extends BaseObjectMySql<Pedido> {
 
 		@Override
 		public String getNameTable() {
-			// TODO Auto-generated method stub
 			return Script.Pedido.NAMETABLE;
 		}
 
@@ -51,7 +52,7 @@ public class ModelPedido extends BaseObjectMySql<Pedido> {
 		
 
 		public void inserir(boolean needValidate) throws Exception  {
-			
+			inserirAllAddress();
 			
 			StringSql.Insert insertSql = new StringSql.Insert( getNameTable() );
 			insertSql.addColumn( Script.Pedido.DESCPEDIDO);
@@ -69,10 +70,47 @@ public class ModelPedido extends BaseObjectMySql<Pedido> {
 			super.inserir( insertSql );	
 		}
 
+		private void inserirAllAddress() throws Exception {
+			
+			ModelAddress modelAddress = new ModelAddress();
+			
+			modelAddress.setAddress( pedido.getAddressRetirada() );
+			modelAddress.inserir();
+			pedido.setIdAddressBusca( modelAddress.getAddress().getId() );
+			System.out.println("id is " + pedido.getIdAddressBusca() );
+			modelAddress.setAddress( pedido.getAddressEntrega() );
+			modelAddress.inserir();
+			pedido.setIdAddressEntrega( pedido.getAddressEntrega().getId() );
+			
+		}
+		private Collection<Pedido> getAllAddress(Collection<Pedido> pedidos) throws Exception {
+			for(Pedido pedido : pedidos) {
+				buscarAllAddress( pedido );
+			}
+			
+			return pedidos;
+		}
+		
+		private void buscarAllAddress(Pedido pedido) throws Exception {
+			ModelAddress modelAddress = new ModelAddress();
+			
+			String where = Script.Address.ID + " = " + pedido.getIdAddressBusca();
+			modelAddress.setAddress( new Address() );
+			modelAddress.buscar( where );
+			pedido.setAddressRetirada( modelAddress.getAddress() );
+			
+			where = Script.Address.ID + " = " + pedido.getIdAddressEntrega();
+			modelAddress.setAddress( new Address() );
+			modelAddress.buscar( where );
+			pedido.setAddressEntrega( modelAddress.getAddress() );
+			
+		}
+		
 		@Override
 		public Class<Pedido> getClassTypeT() {
 			return Pedido.class;
 		}
+		
 		public Collection<Pedido> buscaBy(String idUser, String ultimoCarregado, boolean isUser) throws Exception {
 			String where;
 			if(isUser) {
@@ -85,6 +123,6 @@ public class ModelPedido extends BaseObjectMySql<Pedido> {
 				where += " and " + Script.Pedido.IDPEDIDO + " < " + ultimoCarregado;
 			}
 			
-			return buscar( where , " id desc " , "20" );
+			return getAllAddress( buscar( where , " id desc " , "20" ) ); 
 		}
 }

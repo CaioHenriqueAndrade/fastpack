@@ -2,6 +2,7 @@ package com.fastpack.fastpackandroid.adapters
 
 import android.support.v4.app.Fragment
 import com.fastpack.fastpackandroid.fragments.FragmentEntregadores
+import com.fastpack.fastpackandroid.fragments.FragmentPedidos
 
 import com.fastpack.fastpackandroid.interfaces.Interfaces
 
@@ -20,8 +21,10 @@ class AdapterTabbed(adapterTabbed: Interfaces.AdapterTabbed) : AdapterTabbedBasi
 
 
     override fun getItem(position: Int): Fragment? {
-        //return fragment
-        return FragmentEntregadores.newInstance()
+        if( position == 0 )
+            return FragmentEntregadores.newInstance()
+        else
+            return FragmentPedidos.newInstance()
     }
 
     override fun getCount(): Int {
@@ -29,6 +32,10 @@ class AdapterTabbed(adapterTabbed: Interfaces.AdapterTabbed) : AdapterTabbedBasi
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        return "Fragment $position"
+        return when( position ) {
+            0 -> "Entregadores"
+            1 -> "Meus pedidos"
+            else -> throw IllegalStateException("not implemente name of tab")
+        }
     }
 }

@@ -36,7 +36,7 @@ public interface Interfaces {
 
 
     interface ActivityBasicMethods extends  ActivityMethdsVisible,LayoutMethods , ActivityGetter {
-        LayoutMethodsRequierieds getLayoutBasic();
+        LayoutMethodsRequierieds getNewInstanceOfLayoutBasic();
         @IdRes int getIdContainerView();
     }
 
@@ -57,7 +57,7 @@ public interface Interfaces {
         Activity getActivity();
     }
     interface LayoutFragmentBasic extends ActivityGetter , LayoutMethods {
-        LayoutFragmentBasicMethods getLayout();
+        LayoutFragmentBasicMethods getNewInstanceLayout();
     }
 
     //LayoutFragmentBasicMethods extends essa interfae, olha os metodos la antes de alterar

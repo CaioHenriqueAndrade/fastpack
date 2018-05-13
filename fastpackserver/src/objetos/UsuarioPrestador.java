@@ -6,8 +6,8 @@ import sql.Script;
 
 public class UsuarioPrestador extends Usuario {
 	private int raio;
-	private Local local;
-	
+    private int precoMedio;
+
 	public UsuarioPrestador(Usuario usuario) {
 		super( usuario );
 	}
@@ -19,12 +19,7 @@ public class UsuarioPrestador extends Usuario {
 	@Override
 	public boolean getDados(ResultSet rs) throws Exception {
 		setRaio( 	rs.getInt( Script.UsuarioPrestador.RAIO ) );
-		
-		local = new Local();
-		
-		getLocal().setLatitude(rs.getDouble( Script.UsuarioPrestador.LATITUDE ) );
-		getLocal().setLongitude(rs.getDouble(Script.UsuarioPrestador.LONGITUDE) );
-		
+		setPrecoMedio( rs.getInt(Script.UsuarioPrestador.PRECOMEDIO ) );
 		return super.getDados( rs );
 	}
 	
@@ -34,11 +29,11 @@ public class UsuarioPrestador extends Usuario {
 	public void setRaio(int raio) {
 		this.raio = raio;
 	}
-	public Local getLocal() {
-		return local;
+	public int getPrecoMedio() {
+		return precoMedio;
 	}
-	public void setLocal(Local local) {
-		this.local = local;
+	public void setPrecoMedio(int precoMedio) {
+		this.precoMedio = precoMedio;
 	}
 
 

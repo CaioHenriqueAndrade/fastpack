@@ -39,10 +39,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Seu CPF"
-            android:inputType="textPersonName"
-            android:maxLength="35"
+            android:inputType="number"
+            android:maxLength="11"
             android:maxLines="1"
-            app:met_maxCharacters="35"
+            app:met_maxCharacters="11"
             app:met_primaryColor="@color/colorAccent"
             app:met_underlineColor="@color/laranja6"  />
 

@@ -1,6 +1,7 @@
 package com.fastpack.fastpackandroid.layout_fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.annotation.IdRes;
 import android.view.View;
@@ -26,6 +27,10 @@ public abstract class LayoutFragmentBasic implements Interfaces.LayoutFragmentBa
         recuperarReferencias( view );
         bindViewHolder();
         setOnClick();
+    }
+
+    public void startActivity(Intent it) {
+        getActivity().startActivity( it );
     }
 
     @Override

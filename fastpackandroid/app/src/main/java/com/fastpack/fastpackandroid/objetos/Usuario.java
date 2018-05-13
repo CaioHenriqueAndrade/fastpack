@@ -13,6 +13,10 @@ public class Usuario extends ObjectBasicBaseDados<Usuario> {
 
     public static final int RESPONSE_LOGIN_ERROR = 473;
 
+    public static final int TIPO_PRESTADOR = 1;
+    public static final int TIPO_NORMAL    = 0;
+
+
     private int  tipo, status;
     private String cpf, password, nome;
     private Local local;
@@ -50,6 +54,10 @@ public class Usuario extends ObjectBasicBaseDados<Usuario> {
         values.put(Script. Usuario.TIPO,getTipo() );
         return values;
 
+    }
+
+    public boolean isPrestador() {
+        return getTipo() == TIPO_PRESTADOR;
     }
 
     @Override

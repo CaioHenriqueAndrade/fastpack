@@ -21,7 +21,7 @@ public class StringSql {
 		
 
 		public static StringBuilder getSelectStringOfCoordenadas(Local local) {
-			return returnSelectLoation(  getCoordenadas( local.getLatitude() , local.getLongitude() , 0.05 )  );
+			return returnSelectLoation(  getCoordenadas( local.getLatitude() , local.getLongitude() , 0.5 )  );
 		}
 		
 		public static StringBuilder getSelectStringOfCoordenadas(double latitude, double longitude, double margem) {

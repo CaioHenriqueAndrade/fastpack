@@ -24,7 +24,7 @@ class FragmentEntregadores : FragmentBasic() {
         return R.layout.layout_fragment_entregadores
     }
 
-    override fun getLayout(): Interfaces.LayoutFragmentBasicMethods {
+    override fun getNewInstanceLayout(): Interfaces.LayoutFragmentBasicMethods {
         return LayoutFragmentEntregadores(this)
     }
 }

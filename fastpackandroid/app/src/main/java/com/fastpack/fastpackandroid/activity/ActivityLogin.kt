@@ -20,7 +20,7 @@ class ActivityLogin : ActivityBasic() {
 
     }
 
-    override fun getLayoutBasic(): Interfaces.LayoutMethodsRequierieds {
+    override fun getNewInstanceOfLayoutBasic(): Interfaces.LayoutMethodsRequierieds {
         return LayoutLogin(this)
     }
 

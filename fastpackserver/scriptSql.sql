@@ -18,6 +18,7 @@ id int primary key AUTO_INCREMENT,
 status int,
 tipo int,
 cpf text,
+nome text,
 password text,
 latitude double,
 longitude double
@@ -27,6 +28,7 @@ longitude double
 create table usuarioprestador (
 	id int primary key,
 	raio int,
+	precomedio int,
 	constraint id FOREIGN KEY (id)
 	REFERENCES usuario (id)
 );
@@ -42,21 +44,24 @@ descPedido text,
 horaPostado DATETIME DEFAULT CURRENT_TIMESTAMP,
 horaPrazo DATETIME, 
 horaRecebido DATETIME,
-iduser int
+iduser int,
+latitude double,
+longitude double
 );
 
 create table address (
 id int primary key AUTO_INCREMENT,
 street text,
-streetNumber int,
+streetNumber text,
 neighborhood text,
 city text,
 state text,
-zipcode int,
+zipcode text,
 country text,
-latitude int,
-longitude int,
+latitude double,
+longitude double,
 complementary text,
 idCriador int
 );
+
 

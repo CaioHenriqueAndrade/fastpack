@@ -19,7 +19,7 @@ class ActivityCriarAccount : ActivityBasicService() {
 
     private lateinit var jsonUsuario : String
 
-    override fun getLayoutBasic(): Interfaces.LayoutMethodsRequierieds {
+    override fun getNewInstanceOfLayoutBasic(): Interfaces.LayoutMethodsRequierieds {
         return LayoutCriarAccount( this  , getUsuario() )
     }
 

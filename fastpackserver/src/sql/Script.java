@@ -9,13 +9,16 @@ public class Script {
 		public static final String TIPO			= "tipo";
 		public static final String CPF			= "cpf";
 		public static final String PASSWORD		= "password";
+		public static final String LATITUDE 	= "latitude";
+		public static final String LONGITUDE 	= "longitude";
+		public static final String NOME 		= "nome";
 	}
 	public static class UsuarioPrestador {
 		public static final String NAMETABLE 	= "usuarioprestador";
 		public static final String ID			= "id";
-		public static final String LATITUDE		= "latitude";
-		public static final String LONGITUDE	= "longitude";
 		public static final String RAIO			= "raio";
+		public static final String PRECOMEDIO	= "precomedio";
+
 	}
 	
 	public static class Pedido {
@@ -44,11 +47,11 @@ public class Script {
 	    public static final String NAMETABLE 		= "Address";
 	    public static final String ID 				= "id";
 	    public static final String STREET 			= "street";
-	    public static final String STREET_NUMBER 	= "streetn";
+	    public static final String STREET_NUMBER 	= "streetNumber";
 	    public static final String BAIRRO 			=  "neighborhood";
 	    public static final String CIDADE 			= "city";
 	    public static final String ESTADO 			= "state";
-	    public static final String CEP 				= "zipcod";
+	    public static final String CEP 				= "zipcode";
 	    public static final String PAIS 			= "country";
 	    public static final String LATITUDE 		= "latitude";
 	    public static final String LONGITUDE 		= "longitude";

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/laranja0"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    >
+
+    <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/tools"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:titleTextAppearance="?android:textAppearanceLarge"
+        android:background="@color/laranja6"
+        app:title="Crie seu pedido de entrega"/>
+
+    <TextView
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:text="Faça um pedido e aguarde um entregador aceitar seu pedido para buscar no endereço solicitado :)"/>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/facybutton_address1"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        fancy:fb_borderColor="@color/laranja5"
+        fancy:fb_borderWidth="2dp"
+        fancy:fb_defaultColor="@color/laranja0"
+        fancy:fb_focusColor="#5577bd"
+        fancy:fb_fontIconSize="0sp"
+        fancy:fb_iconPaddingLeft="5dp"
+        fancy:fb_iconPaddingRight="5dp"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Endereço de busca"
+        fancy:fb_textColor="@color/laranja5"
+        fancy:fb_textSize="30sp" />
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/facybutton_address2"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/facybutton_address1"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        fancy:fb_borderColor="@color/laranja5"
+        fancy:fb_borderWidth="2dp"
+        fancy:fb_defaultColor="@color/laranja0"
+        fancy:fb_focusColor="#5577bd"
+        fancy:fb_fontIconSize="0sp"
+        fancy:fb_iconPaddingLeft="5dp"
+        fancy:fb_iconPaddingRight="5dp"
+        fancy:fb_iconPosition="right"
+        fancy:fb_radius="30dp"
+        fancy:fb_text="Endereço de entrega"
+        fancy:fb_textColor="@color/laranja5"
+        fancy:fb_textSize="30sp" />
+
+
+    <TextView
+        android:id="@+id/txt_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="@color/laranja6"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="Continuar"/>
+
+</RelativeLayout>

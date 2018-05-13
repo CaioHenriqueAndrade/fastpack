@@ -12,7 +12,9 @@ import com.fastpack.fastpackandroid.interfaces.Interfaces
  */
 
 abstract class HolderBasic(view: View, val methods: Interfaces.AdapterRecyclerMethods) : RecyclerView.ViewHolder(view), Interfaces.Holder {
-
+    init{
+        this.init( view )
+    }
     override fun init(view: View) {
         recuperarReferencias(view)
         setOnClick()

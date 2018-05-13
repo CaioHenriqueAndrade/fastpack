@@ -1,17 +1,70 @@
 package com.fastpack.fastpackandroid.objetos;
 
+import android.content.res.Resources;
+
+import com.fastpack.fastpackandroid.utils.UtilsConvert;
+
+import org.jetbrains.annotations.NotNull;
+
 public class Pedido {
-    private int idPedido, idPrestador, idAddressBusca, idAddressEntrega, valor, status;
+
+    //Quando o pedido e criado e chega ao servidor
+    public static final int STATUS_JUST_ENVIADO = 0;
+
+    //quando esta aguardando a entrega, ja selecionado quem ira realizar
+    public static final int STATUS_AGUARDE_ENTREGA = 1;
+
+    //quando ja esta entregue
+    public static final int STATUS_ENTREGUE		= 2;
+
+    public static final int STATUS_APAGADO		= 3;
+
+    private int id,idUser, idPrestador, idAddressBusca, idAddressEntrega, valor, status;
     private String descPedido, horaPostado, horaPrazo, horaRecebido;
 
-    private Address address;
+    private Address addressEntrega, addressRetirada;
 
-    public int getIdPedido() {
-        return idPedido;
+
+
+    public boolean isJustEnviadoAoServer() {
+        return getStatus() == STATUS_JUST_ENVIADO;
     }
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+
+    public boolean isAguardandoEntrega() {
+        return getStatus() == STATUS_AGUARDE_ENTREGA;
     }
+
+    public boolean isEntregue() {
+        return getStatus() == STATUS_ENTREGUE;
+    }
+
+    public boolean isCancelado() {
+        return getStatus() == STATUS_APAGADO;
+    }
+
+    @NotNull
+    public CharSequence getStatusLayout(@NotNull Resources resources) {
+        if( isJustEnviadoAoServer() ) {
+            return "Aguardando alguém aceitar";
+        } else if( isAguardandoEntrega() ){
+            return "Pedido aceito";
+        } else if( isEntregue() ) {
+            return "Pedido entregue";
+        } else if( isCancelado() ) {
+            return "Pedido cancelado";
+        } else throw new IllegalStateException("not implemented " + getStatus() );
+    }
+
+    @NotNull
+    public CharSequence getLayoutPreco(@NotNull Resources resources) {
+        return "Preço R$: " + UtilsConvert.toPreco( getValor() );
+    }
+
+    @NotNull
+    public CharSequence getLayoutPedidoData(@NotNull Resources resources) {
+        return "Pedido de " + UtilsConvert.dataMysqlToData( horaPostado );
+    }
+
     public int getIdPrestador() {
         return idPrestador;
     }
@@ -57,16 +110,48 @@ public class Pedido {
     public String getHoraPrazo() {
         return horaPrazo;
     }
+
     public void setHoraPrazo(String horaPrazo) {
         this.horaPrazo = horaPrazo;
     }
+
     public String getHoraRecebido() {
         return horaRecebido;
     }
+
+    public Address getAddressEntrega() {
+        return addressEntrega;
+    }
+
+    public void setAddressEntrega(Address addressEntrega) {
+        this.addressEntrega = addressEntrega;
+    }
+
+    public Address getAddressRetirada() {
+        return addressRetirada;
+    }
+
+    public void setAddressRetirada(Address addressRetirada) {
+        this.addressRetirada = addressRetirada;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
     public void setHoraRecebido(String horaRecebido) {
         this.horaRecebido = horaRecebido;
     }
-
-
-
 }

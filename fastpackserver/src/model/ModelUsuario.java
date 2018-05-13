@@ -22,6 +22,7 @@ public class ModelUsuario extends BaseObjectMySql<Usuario> {
 		stmt.setString(	2, usuario.getPassword());
 		stmt.setInt(	3, usuario.getStatus());
 		stmt.setInt(	4, usuario.getTipo());
+		stmt.setString(	5, usuario.getNome());
 
 	}
 
@@ -49,7 +50,8 @@ public class ModelUsuario extends BaseObjectMySql<Usuario> {
 		insertSql.addColumn( Script.Usuario.PASSWORD);
 		insertSql.addColumn( Script.Usuario.STATUS);
 		insertSql.addColumn( Script.Usuario.TIPO);	
-		
+		insertSql.addColumn( Script.Usuario.NOME);	
+
 		usuario.setId( (Integer) super.inserir( insertSql )  );
 		
 	}

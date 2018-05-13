@@ -17,7 +17,10 @@ import com.fastpack.fastpackandroid.interfaces.Interfaces
 abstract class AdapterRecyclerBasic<T>(private val ac: Interfaces.ActivityGetter) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Interfaces.AdapterRecyclerMethods {
 
     var list: MutableList<T>? = null
-    set(value) { notifyDataSetChanged() }
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
 
     companion object {
         const val TYPE_LOADING = -1

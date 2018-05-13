@@ -35,6 +35,7 @@ public class HttpPedido {
 			public Response getResponse() throws Exception, ConnectionSQLException {
 				Pedido pedido = new Gson().fromJson( json , Pedido.class );
 				new ModelPedido( pedido ).inserir( true );
+				
 				return Response.ok().build();
 			}
 			
@@ -44,7 +45,7 @@ public class HttpPedido {
 	@GET
 	@Path("{idUser}/{ultimoCarregado}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getPedidos(@PathParam("idUser") String idUser , @PathParam("ultimoCarregado") String ultimoCarregado) {
+	public Response getPedidos(@PathParam("idUser") String idUser , @PathParam("ultimoCarregado") String ultimoCarregado ) {
 		return new ResponseManager().execute(new Interfaces.ResponseCallBack() {
 
 			@Override
@@ -60,9 +61,8 @@ public class HttpPedido {
 	@GET
 	@Path("prestador/{idUser}/{ultimoCarregado}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getPedidosPrestador(@PathParam("idUser") String idUser , @PathParam("ultimoCarregado") String ultimoCarregado) {
+	public Response getPedidosPrestador(@PathParam("idUser") String idUser , @PathParam("ultimoCarregado") String ultimoCarregado ) {
 		return new ResponseManager().execute(new Interfaces.ResponseCallBack() {
-
 			@Override
 			public Response getResponse() throws Exception, ConnectionSQLException {
 				Collection<Pedido> collection = new ModelPedido().buscaBy( idUser, ultimoCarregado , false );

@@ -15,7 +15,7 @@ class LayoutActivityAddress(methods: Interfaces.ActivityGetter) : LayoutBasic(me
 
     protected val layoutAddress = LayoutAddress(this)
 
-    private lateinit var button: Button
+    private lateinit var button: View
 
     var action: String = ""
 

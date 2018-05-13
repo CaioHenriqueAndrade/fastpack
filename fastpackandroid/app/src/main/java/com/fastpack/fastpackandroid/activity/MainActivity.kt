@@ -11,6 +11,7 @@ class MainActivity : ActivityBasic() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        startActivity( Intent(this,ActivityPedidoCriar::class.java) )
         setActionBar()
     }
 
@@ -18,7 +19,7 @@ class MainActivity : ActivityBasic() {
         return R.layout.activity_main
     }
 
-    override fun getLayoutBasic(): Interfaces.LayoutMethodsRequierieds {
+    override fun getNewInstanceOfLayoutBasic(): Interfaces.LayoutMethodsRequierieds {
         return LayoutMainActivity(this)
     }
 

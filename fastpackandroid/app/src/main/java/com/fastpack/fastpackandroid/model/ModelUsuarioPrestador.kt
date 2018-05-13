@@ -16,9 +16,11 @@ class ModelUsuarioPrestador(model : Interfaces.ModelUtils) : ModelUsuario( model
 
 
     fun buscar(usuario: Usuario) {
-        /*if(usuario.getId() == 0)
-            throw new IllegalStateException("not search in user == 0"); */
-        val action = Runnable { getRequisicao().getList(PARAM_PRESTADORES, UsuarioPrestador::class.java, "prestador", usuario.id.toString()  ) }
+        if(usuario.getId() == 0)
+            throw IllegalStateException("not search in user == 0");
+
+        val action = Runnable { getRequisicao().getList(PARAM_PRESTADORES, UsuarioPrestador::class.java,
+                "prestador", usuario.local.latitude.toString() , usuario.local.longitude.toString() ) }
         Thread( action ).start()
     }
 

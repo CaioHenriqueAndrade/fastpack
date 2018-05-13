@@ -2,6 +2,8 @@ package com.fastpack.fastpackandroid.objetos;
 
 import android.content.res.Resources;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Created by root on 28/03/18.
  */
@@ -34,6 +36,17 @@ public class Address extends ObjectBasic {
     public static final int VALIDADE_FALSE = 0;
     public static final int VALIDADE_TRUE = 1;
 
+
+    @NotNull
+    public String format() {
+        String formated = getNeighborhood() + " - " + getCity() ;
+
+        if(getComplementary() != null && !getComplementary().isEmpty()) {
+            formated += "\n" + getComplementary();
+        }
+
+        return formated;
+    }
 
     public String validate(Resources res) {
 
@@ -155,5 +168,4 @@ public class Address extends ObjectBasic {
     public void setLocal(Local local) {
         this.local = local;
     }
-
 }

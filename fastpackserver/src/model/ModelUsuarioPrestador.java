@@ -25,18 +25,17 @@ public class ModelUsuarioPrestador extends BaseObjectMySql<UsuarioPrestador> {
 	public void inserir(boolean needValidacao) throws Exception {
 		
 		StringSql.Insert insert = new StringSql.Insert( getNameTable() );
-		insert.addColumn( Script.UsuarioPrestador.LATITUDE );
-		insert.addColumn( Script.UsuarioPrestador.LONGITUDE );
+		insert.addColumn( Script.UsuarioPrestador.ID );
 		insert.addColumn( Script.UsuarioPrestador.RAIO );
-		
+		insert.addColumn( Script.UsuarioPrestador.PRECOMEDIO );
 		super.inserir( insert );
 	}
 	
 	@Override
 	public void setDados(PreparedStatement stmt) throws SQLException, Exception {
-		stmt.setDouble(1, getUsuarioPrestador().getLocal().getLatitude()   );
-		stmt.setDouble(2, getUsuarioPrestador().getLocal().getLongitude()  );
-		stmt.setInt(   3, getUsuarioPrestador().getRaio()	 	);
+		stmt.setDouble(1, getUsuarioPrestador().getId()   );
+		stmt.setInt(   2, getUsuarioPrestador().getRaio() );
+		stmt.setInt(   3, getUsuarioPrestador().getPrecoMedio());
 	}
 
 	public String getInnerJoin() {
@@ -67,8 +66,8 @@ public class ModelUsuarioPrestador extends BaseObjectMySql<UsuarioPrestador> {
 
 	@Override
 	public boolean getDados(ResultSet rs) throws SQLException, Exception {
-		getUsuarioPrestador().getDados( rs );
-		return false;
+		
+		return getUsuarioPrestador().getDados( rs );
 	}
 	
 	public void setUsuario(UsuarioPrestador usuario) {

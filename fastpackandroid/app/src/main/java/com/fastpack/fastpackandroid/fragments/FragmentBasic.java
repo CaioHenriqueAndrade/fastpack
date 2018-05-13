@@ -19,7 +19,7 @@ public abstract class FragmentBasic extends Fragment implements Interfaces.Layou
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate( getIdLayout() , container , false );
-        getLayout().init( view );
+        getNewInstanceLayout().init( view );
         return view;
     }
 

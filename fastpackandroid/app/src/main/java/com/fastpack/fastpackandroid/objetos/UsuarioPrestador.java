@@ -6,25 +6,22 @@ package com.fastpack.fastpackandroid.objetos;
 
 public class UsuarioPrestador extends Usuario {
 
+    private int raio;
+    private int precoMedio;
 
-        private Local location ;
-        private int raio;
+    public int getRaio() {
+        return raio;
+    }
 
-        public Local getLocation() {
-            return location;
-        }
+    public void setRaio(int raio) {
+        this.raio = raio;
+    }
 
-        public void setLocation(Local location) {
-            this.location = location;
-        }
+    public int getPrecoMedio() {
+        return precoMedio;
+    }
 
-        public int getRaio() {
-            return raio;
-        }
-
-        public void setRaio(int raio) {
-            this.raio = raio;
-        }
-
-
+    public void setPrecoMedio(int precoMedio) {
+        this.precoMedio = precoMedio;
+    }
 }

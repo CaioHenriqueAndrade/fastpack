@@ -34,7 +34,9 @@ class AdapterRecyclerEntregadores(ac: Interfaces.ActivityGetter) : AdapterRecycl
     }
 
     override fun getItemCount(): Int {
-        if( list == null ) return 0
+        if( list == null ) return 1
+
+        if(list!!.size == 0) return 1
 
         return list!!.size
     }

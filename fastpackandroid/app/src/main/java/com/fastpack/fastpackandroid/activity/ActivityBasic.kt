@@ -46,7 +46,7 @@ abstract class ActivityBasic : AppCompatActivity(), Interfaces.ActivityBasicMeth
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
-        layout = layoutBasic
+        layout = newInstanceOfLayoutBasic
         layout.init(findViewById(idContainerView))
     }
 

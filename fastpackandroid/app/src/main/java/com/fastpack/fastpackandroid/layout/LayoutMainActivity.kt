@@ -1,5 +1,6 @@
 package com.fastpack.fastpackandroid.layout
 
+import android.content.Context
 import android.support.design.widget.TabLayout
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.ViewPager
@@ -8,6 +9,7 @@ import android.view.View
 import com.fastpack.fastpackandroid.R
 import com.fastpack.fastpackandroid.activity.ActivityBasic
 import com.fastpack.fastpackandroid.adapters.AdapterTabbed
+import com.fastpack.fastpackandroid.base_dados.BancoManager
 import com.fastpack.fastpackandroid.interfaces.Interfaces
 import com.fastpack.fastpackandroid.objetos.Usuario
 
@@ -18,7 +20,6 @@ import com.fastpack.fastpackandroid.objetos.Usuario
 class LayoutMainActivity( m : Interfaces.ActivityGetter ) : LayoutMainBasic( m ){
 
 
-    private var user : Usuario? = null
 
     private val adapterTabbed = AdapterTabbed( this )
 
@@ -26,9 +27,19 @@ class LayoutMainActivity( m : Interfaces.ActivityGetter ) : LayoutMainBasic( m )
         adapterTabbed.init()
     }
 
-    fun getUsuario(): Usuario? {
-        return null
+    companion object {
+        private var user : Usuario? = null
+
+        @Synchronized
+        fun getUsuario(context : Context): Usuario {
+            if( user == null ) {
+                user = Usuario()
+                user!!.buscar( BancoManager( context ) , null )
+            }
+            return user!!
+        }
     }
+
 
 }
 

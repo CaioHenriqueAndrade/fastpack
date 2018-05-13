@@ -1,6 +1,7 @@
 package com.fastpack.fastpackandroid.layout
 
 import android.app.Activity
+import android.content.Intent
 import android.content.res.Resources
 import android.support.annotation.StringRes
 import android.view.View
@@ -43,4 +44,7 @@ abstract class LayoutBasic(protected val methods : Interfaces.ActivityGetter ) :
         return methods.activity
     }
 
+    fun startActivity(it : Intent) {
+        activity.startActivity( it )
+    }
 }

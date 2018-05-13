@@ -18,13 +18,16 @@ public class Pedido extends ObjectBasic {
 	//quando ja esta entregue
 	public static final int STATUS_ENTREGUE		= 2;
 	
-	
+	//quando apagado/cancelado
+	public static final int STATUS_APAGADO		= 3;
+
 	//sobre os comentarios que serao realizados apos a finalizacao do pedido,
 	public static final int COMENTARIO_NENHUM 		= 0;
 	public static final int COMENTARIO_USER_NORMAL  = 1;
 	public static final int COMENTARIO_PRESTADOR  	= 2;
 	public static final int COMENTARIO_OK  			= 3;
 	
+	private Address addressEntrega, addressRetirada;
 	
 	@Override
 	public boolean getDados(ResultSet rs) throws SQLException, Exception {
@@ -103,6 +106,22 @@ public class Pedido extends ObjectBasic {
 
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
+	}
+
+	public Address getAddressEntrega() {
+		return addressEntrega;
+	}
+
+	public void setAddressEntrega(Address addressEntrega) {
+		this.addressEntrega = addressEntrega;
+	}
+
+	public Address getAddressRetirada() {
+		return addressRetirada;
+	}
+
+	public void setAddressRetirada(Address addressRetirada) {
+		this.addressRetirada = addressRetirada;
 	}
 
 	
