@@ -14,6 +14,7 @@ class ActivityPedidoAceitar : ActivityBasic() {
 
     companion object {
         const val KEY_PEDIDO = "P_A"
+        const val ACTION_PEDIDO_ATUALIZED = "PED_AT"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

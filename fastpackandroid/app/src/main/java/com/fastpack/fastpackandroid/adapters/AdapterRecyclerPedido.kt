@@ -43,4 +43,16 @@ class AdapterRecyclerPedido(ac: Interfaces.ActivityGetter) : AdapterRecyclerBasi
 
         return TYPE_PEDIDO
     }
+
+
+    fun notifyItemChanged(p : Pedido) {
+        for ( (index , pedido) in list!!.withIndex() ) {
+            if( pedido.id == p.id ) {
+                pedido.atualizar( p )
+                notifyItemChanged( index )
+                break
+            }
+        }
+}
+
 }

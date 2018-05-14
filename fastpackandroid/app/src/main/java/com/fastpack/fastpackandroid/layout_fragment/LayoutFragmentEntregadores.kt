@@ -9,6 +9,7 @@ import com.fastpack.fastpackandroid.adapter_recycler.AdapterRecyclerEntregadores
 import com.fastpack.fastpackandroid.interfaces.Interfaces
 import com.fastpack.fastpackandroid.layout.LayoutMainActivity
 import com.fastpack.fastpackandroid.model.ModelUsuarioPrestador
+import com.fastpack.fastpackandroid.objetos.Pedido
 import com.fastpack.fastpackandroid.objetos.Usuario
 import com.fastpack.fastpackandroid.objetos.UsuarioPrestador
 import com.fastpack.fastpackandroid.utils.UtilsLayoutManager
@@ -77,4 +78,5 @@ class LayoutFragmentEntregadores(methods: Interfaces.LayoutFragmentBasic) : Layo
             makeText("Não houve conexão com o servidor")
         }
     }
+
 }

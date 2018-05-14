@@ -11,7 +11,6 @@ class MainActivity : ActivityBasic() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity( Intent(this,ActivityPedidoCriar::class.java) )
         setActionBar()
     }
 

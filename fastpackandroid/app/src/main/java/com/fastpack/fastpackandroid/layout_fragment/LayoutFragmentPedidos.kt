@@ -18,6 +18,9 @@ import com.fastpack.fastpackandroid.utils.UtilsLayoutManager
 
 class LayoutFragmentPedidos(methods: Interfaces.LayoutFragmentBasic) : LayoutFragmentPedidosModel(methods) {
 
+    fun whenActionPedidoAtualized( pedido : Pedido ) {
+        adapterPedidos.notifyItemChanged( pedido )
+    }
 
 
 
@@ -99,7 +102,7 @@ abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBa
     }
 }
 
-abstract class LayoutFragmentPedidosBasic(methods: Interfaces.LayoutFragmentBasic) : LayoutFragmentBasic(methods), View.OnClickListener {
+abstract class LayoutFragmentPedidosBasic(methods: Interfaces.LayoutFragmentBasic) : LayoutFragmentBasic (methods), View.OnClickListener {
 
 
     private lateinit var recyclerView: RecyclerView

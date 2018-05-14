@@ -15,11 +15,14 @@ import com.fastpack.fastpackandroid.interfaces.Interfaces;
 
 public abstract class FragmentBasic extends Fragment implements Interfaces.LayoutFragmentBasic {
 
+    protected Interfaces.LayoutFragmentBasicMethods layout;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate( getIdLayout() , container , false );
-        getNewInstanceLayout().init( view );
+         layout = getNewInstanceLayout();
+         layout.init( view );
         return view;
     }
 
