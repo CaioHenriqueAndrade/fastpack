@@ -44,7 +44,11 @@ public class Pedido extends ObjectBasic {
 		setHoraRecebido(	rs.getString(Script.Pedido.HORARECEBIDO));
 		return true;
 	}
-	
+
+	public boolean existsId() {
+		return getId() != 0;
+		
+	}
 	public int getIdPrestador() {
 		return idPrestador;
 	}
@@ -123,6 +127,7 @@ public class Pedido extends ObjectBasic {
 	public void setAddressRetirada(Address addressRetirada) {
 		this.addressRetirada = addressRetirada;
 	}
+
 
 	
 }
