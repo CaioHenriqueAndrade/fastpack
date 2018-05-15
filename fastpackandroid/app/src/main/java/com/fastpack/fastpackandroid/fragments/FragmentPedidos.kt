@@ -11,6 +11,13 @@ import com.google.gson.Gson
 class FragmentPedidos : FragmentBasicService() {
 
 
+    companion object {
+
+        fun newInstance(): FragmentPedidos {
+            return FragmentPedidos()
+        }
+
+    }
     override fun getIdLayout(): Int {
         return R.layout.layout_fragment_pedidos
     }
@@ -18,14 +25,6 @@ class FragmentPedidos : FragmentBasicService() {
     override fun getNewInstanceLayout(): Interfaces.LayoutFragmentBasicMethods {
         return LayoutFragmentPedidos( this )
     }
-
-    companion object {
-
-        fun newInstance(): FragmentPedidos {
-            return FragmentPedidos()
-        }
-    }
-
 
     override fun onReceiv(intent: Intent) {
         if( intent.action.equals( ActivityPedidoAceitar.ACTION_PEDIDO_ATUALIZED ) ) {
@@ -41,4 +40,6 @@ class FragmentPedidos : FragmentBasicService() {
     override fun getActions(): Array<String>? {
         return arrayOf( ActivityPedidoAceitar.ACTION_PEDIDO_ATUALIZED )
     }
+
+    
 }

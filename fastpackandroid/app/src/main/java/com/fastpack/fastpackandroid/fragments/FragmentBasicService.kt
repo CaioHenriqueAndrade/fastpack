@@ -4,18 +4,17 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
-import com.fastpack.fastpackandroid.interfaces.Interfaces
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+
 
 abstract class FragmentBasicService : FragmentBasic() {
 
         var bManager: LocalBroadcastManager? = null
 
-
-        init {
-            registerBroadcast()
-
-        }
 
         private fun registerBroadcast() {
             val actions = getActions() ?: return
@@ -30,6 +29,11 @@ abstract class FragmentBasicService : FragmentBasic() {
 
             bManager!!.registerReceiver(bReceiver, intentFilter)
         }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+        registerBroadcast()
+    }
 
         private val bReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {

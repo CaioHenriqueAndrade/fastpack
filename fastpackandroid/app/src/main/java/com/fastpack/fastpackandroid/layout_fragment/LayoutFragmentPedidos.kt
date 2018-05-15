@@ -21,9 +21,6 @@ class LayoutFragmentPedidos(methods: Interfaces.LayoutFragmentBasic) : LayoutFra
     fun whenActionPedidoAtualized( pedido : Pedido ) {
         adapterPedidos.notifyItemChanged( pedido )
     }
-
-
-
 }
 
 abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBasic ) : LayoutFragmentPedidosBasic(methods), Interfaces.ModelUtils {
@@ -36,10 +33,13 @@ abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBa
 
     @WorkerThread
     override fun onDadosReceives(param: Int, `object`: Any?, responseCode: Int) {
+
         if( param == ModelPedido.PARAM_BUSCAR ) {
+
             if( responseCode == 200 && `object`  != null) {
                 list = `object` as MutableList<Pedido>?
             }
+
             activity.runOnUiThread({ whenFinishRequisicaoBuscar() })
         }
     }
@@ -58,8 +58,6 @@ abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBa
     private fun setList() {
         adapterPedidos.list = list
     }
-
-
 
     private fun getUsuario() : Usuario {
         return LayoutMainActivity.getUsuario( activity )
@@ -101,6 +99,7 @@ abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBa
         return ( total / totalDeUsers ).toString()
     }
 }
+
 
 abstract class LayoutFragmentPedidosBasic(methods: Interfaces.LayoutFragmentBasic) : LayoutFragmentBasic (methods), View.OnClickListener {
 
