@@ -5,12 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-import interfaces.Interfaces;
 import objetos.Address;
 import objetos.Pedido;
 import sql.Script;
 import sql.StringSql;
-import utils.UtilsWhereLocation;
 
 public class ModelPedido extends BaseObjectMySql<Pedido> {
 
@@ -125,4 +123,23 @@ public class ModelPedido extends BaseObjectMySql<Pedido> {
 			
 			return getAllAddress( buscar( where , " id desc " , "20" ) ); 
 		}
+		
+		public Pedido getPedido(String idUsuario, String idPedido) throws Exception {
+			String where = Script.Pedido.IDPEDIDO + " = " + idPedido;
+			setPedido( new Pedido() );
+			buscar( where );
+			
+			int idUser = Integer.parseInt( idUsuario );
+			
+			if(pedido.existsId() && (pedido.getIdUser() == idUser || 
+									pedido.getIdPrestador() == idUser ) ) {
+				return pedido;
+			} else throw new IllegalArgumentException("this user not possible get pedido " + idUsuario );
+		}
+		public void setPedido(Pedido pedido) {
+			this.pedido = pedido;
+		}
+		
+		
+		
 }

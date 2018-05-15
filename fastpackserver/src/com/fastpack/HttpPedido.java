@@ -72,5 +72,19 @@ public class HttpPedido {
 		});
 	}
 	
+	@GET
+	@Path("atualizar/{idUser}/{idPedido}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getPedidoAtualizacao(@PathParam("idUser") String idUser , @PathParam("idPedido") String idPedido ) {
+		return new ResponseManager().execute(new Interfaces.ResponseCallBack() {
+			@Override
+			public Response getResponse() throws Exception, ConnectionSQLException {
+				Pedido pedido = new ModelPedido().getPedido( idUser , idPedido );
+				return Response.ok( new Gson().toJson( pedido ) ).build();
+			}
+			
+		});
+	}
+	
 	
 }
