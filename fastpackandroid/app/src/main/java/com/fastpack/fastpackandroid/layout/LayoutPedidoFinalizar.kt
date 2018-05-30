@@ -1,10 +1,13 @@
 package com.fastpack.fastpackandroid.layout
 
+import android.content.Intent
 import android.support.annotation.WorkerThread
+import android.support.v4.content.LocalBroadcastManager
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.fastpack.fastpackandroid.R
+import com.fastpack.fastpackandroid.activity.ActivityPedidoFinalizar
 
 import com.fastpack.fastpackandroid.interfaces.Interfaces
 import com.fastpack.fastpackandroid.model.ModelPedido
@@ -67,11 +70,18 @@ abstract class LayoutPedidoFinalizarModel(methods: Interfaces.ActivityGetter) : 
     private fun whenFinishSendService(responseCode: Int) {
         dismissDialog()
         if(responseCode == 200) {
+            sendBroadcastNewPedido()
             makeText("Salvo com sucesso!")
             activity.finish()
         } else {
             makeText("Não conseguimos criar seu pedido")
         }
+    }
+
+    private fun sendBroadcastNewPedido() {
+        val it = Intent()
+        it.action = ActivityPedidoFinalizar.ACTION_PEDIDO_FINALIZED
+        LocalBroadcastManager.getInstance( activity ).sendBroadcast( it )
     }
 
     fun getPedido() : Pedido {
@@ -86,6 +96,7 @@ abstract class LayoutPedidoFinalizarModel(methods: Interfaces.ActivityGetter) : 
         getPedido().addressEntrega = getAddressEntrega()
         getPedido().addressRetirada = getAddressRetirada()
         getPedido().idUser = getUsuario().id
+        getPedido().local = getAddressRetirada().local
     }
 
     fun getUsuario() : Usuario {

@@ -57,4 +57,7 @@ public abstract class LayoutFragmentBasic implements Interfaces.LayoutFragmentBa
     public Activity getActivity() {
         return methods.getActivity();
     }
+
+    @Override
+    public void onDestroy() { }
 }

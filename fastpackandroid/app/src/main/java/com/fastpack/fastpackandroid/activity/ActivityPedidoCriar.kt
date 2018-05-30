@@ -21,6 +21,8 @@ class ActivityPedidoCriar : ActivityBasicService() {
             (layout as LayoutPedidoCriar).whenPedidoEntregaReceiv( toAddress(intent) )
         } else if(intent.action.equals( ActivityAddress.ACTION_PEDIDO_RETIRADA )) {
             (layout as LayoutPedidoCriar).whenPedidoRetiradaReceiv( toAddress(intent) )
+        } else if( intent.action.equals( ActivityPedidoFinalizar.ACTION_PEDIDO_FINALIZED ) ) {
+            finish()
         } else throw IllegalStateException("not implemented ${intent.action}")
     }
 
@@ -29,7 +31,8 @@ class ActivityPedidoCriar : ActivityBasicService() {
     }
 
     override fun getActions(): Array<String>? {
-        return arrayOf( ActivityAddress.ACTION_PEDIDO_ENTREGA , ActivityAddress.ACTION_PEDIDO_RETIRADA )
+        return arrayOf( ActivityAddress.ACTION_PEDIDO_ENTREGA , ActivityAddress.ACTION_PEDIDO_RETIRADA,
+                ActivityPedidoFinalizar.ACTION_PEDIDO_FINALIZED )
     }
 
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {

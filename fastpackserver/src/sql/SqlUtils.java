@@ -89,6 +89,7 @@ public class SqlUtils {
 		Connection con = new Conexao().getConnection();
 
 		try {
+			System.out.println(sql);
 
 			PreparedStatement stmt = con.prepareStatement(sql);
 			for (int i = 0; i < objects.length; i++) {

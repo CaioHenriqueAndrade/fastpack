@@ -66,7 +66,7 @@ public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> 
 
 			@Override
 			public boolean getDados(ResultSet rs) throws Exception {
-				// TODO Auto-generated method stub
+
 				T classe = null;
 
 				// aqui pode dar illegalAcessException se nao tiver construtor default
@@ -85,12 +85,7 @@ public abstract class BaseObjectMySql<T> implements Interfaces.ObjectMethods<T> 
 					case NO_ADD_COLECTION:
 					}
 					
-							
-					
-
-					
 				} catch (InstantiationException | IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				

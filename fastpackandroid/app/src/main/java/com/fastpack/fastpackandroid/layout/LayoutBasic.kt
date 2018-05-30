@@ -29,6 +29,11 @@ abstract class LayoutBasic(protected val methods : Interfaces.ActivityGetter ) :
     override fun onResume() { }
     override fun onStop() { }
 
+
+    fun isVisible() : Boolean {
+        return (methods as Interfaces.ActivityBasicMethods).isVisible
+    }
+
     fun makeText(text : String) {
         Toast.makeText( activity , text , Toast.LENGTH_LONG ).show()
     }

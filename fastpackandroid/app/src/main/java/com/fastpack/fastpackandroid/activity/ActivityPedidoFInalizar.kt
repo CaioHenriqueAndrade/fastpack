@@ -13,6 +13,7 @@ class ActivityPedidoFinalizar : ActivityBasic() {
     companion object {
         const val KEY_AD_RETIRA = "KART"
         const val KEY_AD_ENTREGA= "KADE"
+        const val ACTION_PEDIDO_FINALIZED = "AC_PEDIDO_FINALIZED"
     }
     override fun getNewInstanceOfLayoutBasic(): Interfaces.LayoutMethodsRequierieds {
         return LayoutPedidoFinalizar( this )

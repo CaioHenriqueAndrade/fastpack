@@ -9,7 +9,7 @@ class HolderNoPedido(view: View, methods: Interfaces.AdapterRecyclerMethods) : H
 
     override fun bindViewHolder() {
         imageView.setImageResource(R.drawable.ic_circle_alert)
-        textView.text = "Não conseguimos conexão :/"
+        textView.text = "Ainda não existem pedidos"
 
     }
 }

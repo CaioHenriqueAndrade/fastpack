@@ -8,7 +8,7 @@ import sql.Script;
 public class Pedido extends ObjectBasic {
 	private int idUser , idPrestador, idAddressBusca, idAddressEntrega, valor, status;
 	private String descPedido, horaPostado, horaPrazo, horaRecebido;
-	
+	private Local local;
 	//Quando o pedido e criado e chega ao servidor
 	public static final int STATUS_JUST_ENVIADO = 0;
 	
@@ -42,8 +42,56 @@ public class Pedido extends ObjectBasic {
 		setHoraPostado(		rs.getString(Script.Pedido.HORAPOSTADO));
 		setHoraPrazo(		rs.getString(Script.Pedido.HORAPRAZO));
 		setHoraRecebido(	rs.getString(Script.Pedido.HORARECEBIDO));
+		setLocal( new Local() );
+		getLocal().setLatitude( rs.getFloat( Script.Pedido.LATITUDE ) );
+		getLocal().setLongitude(rs.getFloat( Script.Pedido.LONGITUDE) );
 		return true;
 	}
+	
+    public boolean isJustEnviadoAoServer() {
+        return getStatus() == STATUS_JUST_ENVIADO;
+    }
+
+    public boolean isAguardandoEntrega() {
+        return getStatus() == STATUS_AGUARDE_ENTREGA;
+    }
+
+    public boolean isEntregue() {
+        return getStatus() == STATUS_ENTREGUE;
+    }
+
+    public boolean isCancelado() {
+        return getStatus() == STATUS_APAGADO;
+    }
+
+
+	public boolean isPossivelModificarStatus(int newStatus, boolean isPrestadorAlterando) {
+		System.out.println("is prestador ? " + isPrestadorAlterando);
+		if( isAguardandoEntrega() ) {
+			//quando esta aguardando entrega, so e possivel modificar quando
+			if( isPrestadorAlterando ) {
+				if( newStatus == STATUS_APAGADO || newStatus == STATUS_ENTREGUE) {
+					return true;
+				}
+			}
+			
+			return false;
+		}
+
+		
+		if( isJustEnviadoAoServer() ) {
+			if( newStatus == STATUS_APAGADO || newStatus == STATUS_AGUARDE_ENTREGA ) {
+					return true;
+			}
+			
+			return false;
+		}
+		
+
+		return false ;
+	}
+
+
 	
 	public int getIdPrestador() {
 		return idPrestador;
@@ -124,5 +172,13 @@ public class Pedido extends ObjectBasic {
 		this.addressRetirada = addressRetirada;
 	}
 
+	public Local getLocal() {
+		return local;
+	}
+
+	public void setLocal(Local local) {
+		this.local = local;
+	}
+	
 	
 }

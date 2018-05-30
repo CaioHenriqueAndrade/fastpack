@@ -1,8 +1,11 @@
 package com.fastpack.fastpackandroid.objetos;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
 
 import com.fastpack.fastpackandroid.utils.UtilsConvert;
+import com.fastpack.fastpackandroid.utils.UtilsDialog;
+import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,13 +20,13 @@ public class Pedido {
     //quando ja esta entregue
     public static final int STATUS_ENTREGUE		= 2;
 
-    public static final int STATUS_APAGADO		= 3;
+    public static final int STATUS_CANCELADO = 3;
 
     private int id,idUser, idPrestador, idAddressBusca, idAddressEntrega, valor, status;
     private String descPedido, horaPostado, horaPrazo, horaRecebido;
 
     private Address addressEntrega, addressRetirada;
-
+    private Local local;
 
 
     public boolean isJustEnviadoAoServer() {
@@ -39,7 +42,7 @@ public class Pedido {
     }
 
     public boolean isCancelado() {
-        return getStatus() == STATUS_APAGADO;
+        return getStatus() == STATUS_CANCELADO;
     }
 
     @NotNull
@@ -83,6 +86,18 @@ public class Pedido {
     public void setIdAddressEntrega(int idAddressEntrega) {
         this.idAddressEntrega = idAddressEntrega;
     }
+    @NotNull
+    public String toJson() {
+        return new Gson().toJson(this );
+    }
+
+    public void notifyAtualizacao(@NotNull Pedido pedido) {
+        setStatus( pedido.getStatus() );
+        setHoraPostado( pedido.getHoraPostado() );
+        setHoraPrazo( pedido.getHoraPrazo() );
+        setHoraRecebido( pedido.getHoraRecebido() );
+        setIdPrestador( pedido.getIdPrestador() );
+    }
     public int getValor() {
         return valor;
     }
@@ -107,6 +122,7 @@ public class Pedido {
     public void setHoraPostado(String horaPostado) {
         this.horaPostado = horaPostado;
     }
+
     public String getHoraPrazo() {
         return horaPrazo;
     }
@@ -153,5 +169,13 @@ public class Pedido {
 
     public void setHoraRecebido(String horaRecebido) {
         this.horaRecebido = horaRecebido;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
 }

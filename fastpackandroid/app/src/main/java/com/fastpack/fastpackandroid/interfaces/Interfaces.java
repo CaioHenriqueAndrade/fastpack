@@ -77,6 +77,7 @@ public interface Interfaces {
     }
     interface LayoutFragmentBasicMethods extends LayoutBasicMethods, ActivityGetter {
         void makeText(String text);
+        void onDestroy();
     }
 
     interface AdapterRecyclerMethods extends ActivityGetter {

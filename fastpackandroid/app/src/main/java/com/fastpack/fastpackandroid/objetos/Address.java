@@ -3,6 +3,7 @@ package com.fastpack.fastpackandroid.objetos;
 import android.content.res.Resources;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by root on 28/03/18.
@@ -36,6 +37,10 @@ public class Address extends ObjectBasic {
     public static final int VALIDADE_FALSE = 0;
     public static final int VALIDADE_TRUE = 1;
 
+
+    public CharSequence formatAll() {
+        return street + ", " + streetNumber + " - " + format();
+    }
 
     @NotNull
     public String format() {
@@ -168,4 +173,5 @@ public class Address extends ObjectBasic {
     public void setLocal(Local local) {
         this.local = local;
     }
+
 }

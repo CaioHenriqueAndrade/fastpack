@@ -6,8 +6,7 @@ import java.sql.SQLException;
 
 class Conexao {
 
-	public Conexao() {
-	}
+	public Conexao() {  }
 	
 	public Connection getConnection5() throws SQLException {
 
@@ -15,7 +14,7 @@ class Conexao {
         String dbName = "events";
         String user = "caio";
         String password = "1234";
-
+        
 	
 		/*
 		String hostName = "uevents.database.windows.net";

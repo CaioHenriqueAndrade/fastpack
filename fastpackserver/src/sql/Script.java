@@ -34,6 +34,9 @@ public class Script {
 		public static final String HORAPRAZO		="horaprazo";
 		public static final String HORARECEBIDO		="horarecebido";
 		public static final String IDUSER			="iduser";
+		public static final String LATITUDE			="latitude";
+		public static final String LONGITUDE		="longitude";
+
 	}
 	
 	public static class PedidoSolicitacao {
