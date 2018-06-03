@@ -14,6 +14,7 @@ import com.fastpack.fastpackandroid.objetos.Pedido
 import com.fastpack.fastpackandroid.objetos.Usuario
 import com.fastpack.fastpackandroid.utils.UtilsDialog
 import com.fastpack.fastpackandroid.utils.UtilsProgressDialog
+import com.google.gson.Gson
 
 class LayoutPedidoAceitar(methods: Interfaces.ActivityGetter) : LayoutPedidoAceitarQuestion(methods) {
     override fun recuperarReferencias(view: View) {
@@ -64,12 +65,11 @@ abstract class LayoutPedidoAceitarQuestion(methods: Interfaces.ActivityGetter) :
 
 }
 abstract class LayoutPedidoAceitarModel(methods: Interfaces.ActivityGetter) : LayoutPedidoAceitarInterationUser(methods), Interfaces.ModelUtils {
-    protected var modelPedido  = ModelPedido( this )
-    private val progressDialog = UtilsProgressDialog( activity )
+    private val progressDialog = UtilsProgressDialog(activity)
 
     override fun changeStatus() {
 
-        if( pedidoIsDoUser() ) {
+        if (pedidoIsDoUser()) {
 
             //se e do usuario e o pedido e clicavel ainda,
             //ou seja, ainda e possivel modificar o status
@@ -85,12 +85,12 @@ abstract class LayoutPedidoAceitarModel(methods: Interfaces.ActivityGetter) : La
 
     protected fun aceitarPedido() {
         showProgressDialog()
-        modelPedido.aceitarPedido( getUsuario(), pedido )
+        modelPedido.aceitarPedido(getUsuario(), pedido)
     }
 
     protected fun finalizarPedido() {
         showProgressDialog()
-        modelPedido.finalizarPedido( getUsuario() , pedido )
+        modelPedido.finalizarPedido(getUsuario(), pedido)
     }
 
     protected fun cancelarPedido() {
@@ -99,22 +99,22 @@ abstract class LayoutPedidoAceitarModel(methods: Interfaces.ActivityGetter) : La
     }
 
     override fun onDadosReceives(param: Int, `object`: Any?, responseCode: Int) {
-        if( param == ModelPedido.PARAM_ACEITAR ) {
+        if (param == ModelPedido.PARAM_ACEITAR) {
 
-            activity?.runOnUiThread({ whenReturnAccepted( responseCode ) })
+            activity?.runOnUiThread({ whenReturnAccepted(responseCode) })
 
-        } else if(param == ModelPedido.PARAM_CANCELAR) {
+        } else if (param == ModelPedido.PARAM_CANCELAR) {
 
-            activity?.runOnUiThread({ whenCanceled( responseCode ) })
+            activity?.runOnUiThread({ whenCanceled(responseCode) })
 
-        } else if( param == ModelPedido.PARAM_FINALIZAR ) {
-            activity?.runOnUiThread({ whenPedidoFinalized( responseCode ) })
+        } else if (param == ModelPedido.PARAM_FINALIZAR) {
+            activity?.runOnUiThread({ whenPedidoFinalized(responseCode) })
         } else throw IllegalStateException("not implemented $param")
     }
 
     private fun whenPedidoFinalized(responseCode: Int) {
         dismissProgress()
-        if( responseCode == 200 ) {
+        if (responseCode == 200) {
             makeText("Finalizado com sucesso!")
             pedido.status = Pedido.STATUS_ENTREGUE
             bindViewHolder()
@@ -125,7 +125,7 @@ abstract class LayoutPedidoAceitarModel(methods: Interfaces.ActivityGetter) : La
 
     private fun whenCanceled(responseCode: Int) {
         dismissProgress()
-        if( responseCode == 200 ){
+        if (responseCode == 200) {
             makeText("Atualizado com sucesso")
             changeStatusInPedido(Pedido.STATUS_CANCELADO)
         } else {
@@ -133,7 +133,7 @@ abstract class LayoutPedidoAceitarModel(methods: Interfaces.ActivityGetter) : La
         }
     }
 
-    fun changeStatusInPedido(newStatus : Int) {
+    fun changeStatusInPedido(newStatus: Int) {
         pedido.status = newStatus
         atualizarPedidoInLayoutAndSendBroad()
     }
@@ -142,9 +142,10 @@ abstract class LayoutPedidoAceitarModel(methods: Interfaces.ActivityGetter) : La
         bindViewHolder()
         sendBroadcastPedidoChanged()
     }
+
     private fun whenReturnAccepted(responseCode: Int) {
         dismissProgress()
-        if( responseCode == 200 ) {
+        if (responseCode == 200) {
             makeText("Alterado com sucesso!")
             pedido.idPrestador = getUsuario().id
             changeStatusInPedido(Pedido.STATUS_AGUARDE_ENTREGA)
@@ -162,19 +163,10 @@ abstract class LayoutPedidoAceitarModel(methods: Interfaces.ActivityGetter) : La
     fun dismissProgress() {
         progressDialog.dismiss()
     }
-
-
-    fun sendBroadcastPedidoChanged() {
-        val it = Intent()
-        it.action = ActivityPedidoAceitar.ACTION_PEDIDO_CHANGED
-        it.putExtra(ActivityPedidoAceitar.EXTRA_PEDIDO_CHANGED , pedido.toJson() )
-        LocalBroadcastManager.getInstance( activity ).sendBroadcast( it )
-    }
-
 }
+abstract class LayoutPedidoAceitarInterationUser(methods: Interfaces.ActivityGetter) : LayoutPedidoAceitarBasic(methods), DialogInterface.OnClickListener, Interfaces.ModelUtils {
+    protected var modelPedido = ModelPedido(this )
 
-
-abstract class LayoutPedidoAceitarInterationUser(methods: Interfaces.ActivityGetter) : LayoutPedidoAceitarBasic(methods), DialogInterface.OnClickListener {
     override fun bindViewHolder() {
         objectToLayout(pedido, getTypeOfObjectLayout())
         super.bindViewHolder()
@@ -190,6 +182,12 @@ abstract class LayoutPedidoAceitarInterationUser(methods: Interfaces.ActivityGet
         }
     }
 
+    fun sendBroadcastPedidoChanged() {
+        val it = Intent()
+        it.action = ActivityPedidoAceitar.ACTION_PEDIDO_CHANGED
+        it.putExtra(ActivityPedidoAceitar.EXTRA_PEDIDO_CHANGED , pedido.toJson() )
+        LocalBroadcastManager.getInstance( activity ).sendBroadcast( it )
+    }
 
     override fun onClick(v: View?) {
         if (pedido.isJustEnviadoAoServer) {
@@ -228,10 +226,49 @@ abstract class LayoutPedidoAceitarInterationUser(methods: Interfaces.ActivityGet
 
     abstract fun changeStatus()
     abstract fun openDialogQuestAction()
+
+    fun atualizarPedido() {
+        modelPedido.searchAtualizacao( pedido , getIdSearch() )
+    }
+
+    private fun getIdSearch(): Int {
+        return getUsuario().id
+    }
+
+    override fun onDadosReceives(param: Int, `object`: Any?, responseCode: Int) {
+        when( param ) {
+            ModelPedido.PARAM_ATUALIZAR -> {
+                activity.runOnUiThread({ whenRecebidoAtualizacao( responseCode , `object` ) })
+            }
+        }
+    }
+
+    private fun whenRecebidoAtualizacao(responseCode: Int, obj: Any?) {
+        if( responseCode == 200 && obj != null ) {
+            atualizarPedido( obj as Pedido )
+        }
+    }
+
+    private fun atualizarPedido( newPedido : Pedido ) {
+        if( pedido.status != newPedido.status ) {
+            pedido.atualizar( newPedido )
+            notifyStatusChanged( newPedido )
+            sendBroadcast( newPedido )
+        }
+    }
+
+    private fun sendBroadcast(newPedido: Any) {
+        val it = Intent()
+        it.action = ActivityPedidoAceitar.ACTION_PEDIDO_ATUALIZED
+        it.putExtra( ActivityPedidoAceitar.KEY_PEDIDO , Gson().toJson( newPedido ) )
+        LocalBroadcastManager.getInstance( activity ).sendBroadcast( it )
+    }
+
 }
+
 abstract class LayoutPedidoAceitarBasic(methods: Interfaces.ActivityGetter) : LayoutBasic(methods), View.OnClickListener {
 
-    lateinit var pedido : Pedido
+    lateinit var pedido: Pedido
 
     companion object {
         const val ALL_ADDRESS = 0
@@ -241,6 +278,7 @@ abstract class LayoutPedidoAceitarBasic(methods: Interfaces.ActivityGetter) : La
     private lateinit var txtAddressEntrega  : TextView
     private lateinit var txtAddressRetirada : TextView
     private lateinit var txtComentarios     : TextView
+    private lateinit var txtStatus : TextView
     private lateinit var txtPreco  : TextView
     private lateinit var txtButton : TextView
 
@@ -250,6 +288,7 @@ abstract class LayoutPedidoAceitarBasic(methods: Interfaces.ActivityGetter) : La
         txtComentarios      = view.findViewById( R.id.txt_6)
         txtPreco            = view.findViewById(R.id.txt_7)
         txtButton           = view.findViewById(R.id.txt_bottom)
+        txtStatus           = view.findViewById(R.id.txt_0)
     }
 
     override fun bindViewHolder() {
@@ -290,7 +329,6 @@ abstract class LayoutPedidoAceitarBasic(methods: Interfaces.ActivityGetter) : La
     protected fun objectToLayout(pedido : Pedido, type : Int ) {
         txtComentarios.text = pedido.descPedido
         txtPreco.text = pedido.getLayoutPreco( resources )
-
         if( type == ALL_ADDRESS ) {
             txtAddressEntrega.text = pedido.addressEntrega.formatAll()
             txtAddressRetirada.text = pedido.addressRetirada.formatAll()
@@ -299,6 +337,11 @@ abstract class LayoutPedidoAceitarBasic(methods: Interfaces.ActivityGetter) : La
             txtAddressRetirada.text = pedido.addressRetirada.format()
         } else throw IllegalStateException("IllegalStateException e")
 
+        txtStatus.text = pedido.getStatusLayout( resources )
+    }
+
+    fun notifyStatusChanged(pedido : Pedido) {
+        txtStatus.text = pedido.getStatusLayout( resources )
     }
 }
 

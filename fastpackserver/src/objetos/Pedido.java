@@ -91,8 +91,10 @@ public class Pedido extends ObjectBasic {
 		return false ;
 	}
 
-
-	
+	public boolean existsId() {
+		return getId() != 0;
+		
+	}
 	public int getIdPrestador() {
 		return idPrestador;
 	}

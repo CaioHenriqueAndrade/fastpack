@@ -16,6 +16,7 @@ class ActivityPedidoAceitar : ActivityBasic() {
         const val KEY_PEDIDO = "P_A"
         const val ACTION_PEDIDO_CHANGED = "AC_PED_CHANGED"
         const val EXTRA_PEDIDO_CHANGED = "E_P_C"
+        const val ACTION_PEDIDO_ATUALIZED = "PED_AT"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -31,7 +31,7 @@ import java.util.List;
 
 public class Requisicoes {
 
-    public static final String urlBase = "http://192.168.1.150/fastpackserver/rest/";
+    public static final String urlBase = "http://192.168.1.150:8080/fastpackserver/rest/";
 
     private Interfaces.ModelBasic modelBasic;
 

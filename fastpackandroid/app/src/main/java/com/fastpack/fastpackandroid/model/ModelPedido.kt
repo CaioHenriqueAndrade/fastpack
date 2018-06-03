@@ -15,6 +15,7 @@ class ModelPedido(utils: Interfaces.ModelUtils) : ModelBasic(utils) {
         const val PARAM_PROXIMOS = 49
         const val PARAM_FINALIZAR = 50
         const val PARAM_ATUALIZAR_ALL_PEDIDO = 51
+        const val PARAM_ATUALIZAR = 47
     }
 
     @WorkerThread
@@ -39,58 +40,65 @@ class ModelPedido(utils: Interfaces.ModelUtils) : ModelBasic(utils) {
     }
 
     fun aceitarPedido(usuario: Usuario, pedido: Pedido) {
-        changeStatus(PARAM_ACEITAR,usuario , pedido , Pedido.STATUS_AGUARDE_ENTREGA )
+        changeStatus(PARAM_ACEITAR, usuario, pedido, Pedido.STATUS_AGUARDE_ENTREGA)
     }
 
-    private fun changeStatus(PARAM : Int , usuario: Usuario, pedido: Pedido, newStatus : Int) {
+    private fun changeStatus(PARAM: Int, usuario: Usuario, pedido: Pedido, newStatus: Int) {
 
-        val pedidoStatus = PedidoStatus.getNewInstance( usuario , pedido )
+        val pedidoStatus = PedidoStatus.getNewInstance(usuario, pedido)
 
         pedidoStatus.newStatus = newStatus
 
         Thread({
-            getRequisicao().requerer(  PARAM , "PUT", pedidoStatus , null , false,"pedido")
+            getRequisicao().requerer(PARAM, "PUT", pedidoStatus, null, false, "pedido")
         }).start()
 
     }
 
     fun cancelarPedido(usuario: Usuario, pedido: Pedido) {
-        changeStatus( PARAM_CANCELAR , usuario , pedido , Pedido.STATUS_CANCELADO )
+        changeStatus(PARAM_CANCELAR, usuario, pedido, Pedido.STATUS_CANCELADO)
     }
 
     fun searchPedidosParaPrestador(usuario: Usuario) {
         Thread({
-            getRequisicao().getList( PARAM_PROXIMOS , Pedido::class.java ,
-                    "pedido","proximos",usuario.local.latitude.toString(), usuario.local.longitude.toString() )
+            getRequisicao().getList(PARAM_PROXIMOS, Pedido::class.java,
+                    "pedido", "proximos", usuario.local.latitude.toString(), usuario.local.longitude.toString())
         }).start()
     }
 
     fun finalizarPedido(usuario: Usuario, pedido: Pedido) {
-        changeStatus( PARAM_FINALIZAR , usuario , pedido , Pedido.STATUS_ENTREGUE )
+        changeStatus(PARAM_FINALIZAR, usuario, pedido, Pedido.STATUS_ENTREGUE)
     }
 
-    fun atualizar(usuario : Usuario , idPedido : Int ) {
+    fun atualizar(usuario: Usuario, idPedido: Int) {
         Thread({
-            getRequisicao().get( PARAM_ATUALIZAR_ALL_PEDIDO , Pedido() , "pedido/atualizar" , usuario.id.toString() , idPedido.toString() )
+            getRequisicao().get(PARAM_ATUALIZAR_ALL_PEDIDO, Pedido(), "pedido/atualizar", usuario.id.toString(), idPedido.toString())
         }).start()
     }
 
+    fun searchAtualizacao(pedido: Pedido, idQuemRequisita: Int) {
+
+
+        getRequisicao().get(PARAM_ATUALIZAR, Pedido::class.java,
+                "pedido", idQuemRequisita.toString(), pedido.id.toString())
+
+    }
 }
 
 class PedidoStatus {
-     var idUser = 0
-     var idPrestador = 0
-     var newStatus = -5
-     var idPedido = 0
+    var idUser = 0
+    var idPrestador = 0
+    var newStatus = -5
+    var idPedido = 0
 
 
     companion object {
-        fun getNewInstance(usuario : Usuario , pedido : Pedido) : PedidoStatus {
+        fun getNewInstance(usuario: Usuario, pedido: Pedido): PedidoStatus {
             val p = PedidoStatus()
             p.idPedido = pedido.id
             p.idUser = usuario.id
-            if( pedido.idPrestador == 0 ) {
-                if( pedido.idUser != usuario.id ) {
+            if (pedido.idPrestador == 0) {
+                if (pedido.idUser != usuario.id) {
                     p.idPrestador = usuario.id
                 }
             }

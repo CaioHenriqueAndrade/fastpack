@@ -24,6 +24,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Status pedido:"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/txt_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="pedido cancelado"
+                android:textAppearance="?android:textAppearanceMedium" />
+
 
             <TextView
                 android:id="@+id/txt_1"

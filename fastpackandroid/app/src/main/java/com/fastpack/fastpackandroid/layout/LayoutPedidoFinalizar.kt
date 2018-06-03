@@ -60,6 +60,7 @@ abstract class LayoutPedidoFinalizarModel(methods: Interfaces.ActivityGetter) : 
         utilsProgressDialog.dismiss()
     }
 
+
     @WorkerThread
     override fun onDadosReceives(param: Int, `object`: Any?, responseCode: Int) {
         if( param ==  ModelPedido.PARAM_INSERIR) {

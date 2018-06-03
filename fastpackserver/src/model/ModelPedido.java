@@ -189,8 +189,6 @@ public class ModelPedido extends BaseObjectMySql<Pedido> {
 		buscar( where );
 	}
 		 
-	void setPedido(Pedido  p ) { pedido = p; }
-	
 	public static Pedido getPedido(int idUser, String idPedido) throws Exception {
 		
 		ModelPedido model = new ModelPedido( new Pedido() );
@@ -203,4 +201,21 @@ public class ModelPedido extends BaseObjectMySql<Pedido> {
 		}
 		return model.pedido;
 	}
+		
+		public Pedido getPedido(String idUsuario, String idPedido) throws Exception {
+			String where = Script.Pedido.IDPEDIDO + " = " + idPedido;
+			setPedido( new Pedido() );
+			buscar( where );
+			
+			int idUser = Integer.parseInt( idUsuario );
+			
+			if(pedido.existsId() && (pedido.getIdUser() == idUser || 
+									pedido.getIdPrestador() == idUser ) ) {
+				return pedido;
+			} else throw new IllegalArgumentException("this user not possible get pedido " + idUsuario );
+		}
+		public void setPedido(Pedido pedido) {
+			this.pedido = pedido;
+		}
+		
 }

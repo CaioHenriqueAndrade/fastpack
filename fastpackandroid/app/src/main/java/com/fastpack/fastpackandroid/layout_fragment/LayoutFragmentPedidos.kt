@@ -28,7 +28,7 @@ class LayoutFragmentPedidos(methods: Interfaces.LayoutFragmentBasic) : LayoutFra
             limparDados()
             searchListIfNeeded()
         } else if( intent.action.equals( ActivityPedidoAceitar.ACTION_PEDIDO_CHANGED ) ) {
-            adapterPedidos.notifyPedidoChanged( Gson().fromJson(intent.getStringExtra( ActivityPedidoAceitar.EXTRA_PEDIDO_CHANGED ) ,Pedido::class.java ) )
+            adapterPedidos.notifyItemChanged( Gson().fromJson(intent.getStringExtra( ActivityPedidoAceitar.EXTRA_PEDIDO_CHANGED ) ,Pedido::class.java ) )
         } else throw IllegalStateException("not implemented ${intent.action}}")
     }
 
@@ -42,6 +42,9 @@ class LayoutFragmentPedidos(methods: Interfaces.LayoutFragmentBasic) : LayoutFra
         list = null
     }
 
+    fun whenActionPedidoAtualized( pedido : Pedido ) {
+        adapterPedidos.notifyItemChanged( pedido )
+    }
 }
 
 abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBasic ) : LayoutFragmentPedidosBasic(methods), Interfaces.ModelUtils {
@@ -54,10 +57,13 @@ abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBa
 
     @WorkerThread
     override fun onDadosReceives(param: Int, `object`: Any?, responseCode: Int) {
+
         if( param == ModelPedido.PARAM_BUSCAR ) {
+
             if( responseCode == 200 && `object`  != null) {
                 list = `object` as MutableList<Pedido>?
             }
+
             activity?.runOnUiThread({ whenFinishRequisicaoBuscar() })
         }
     }
@@ -76,8 +82,6 @@ abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBa
     private fun setList() {
         adapterPedidos.list = list
     }
-
-
 
     private fun getUsuario() : Usuario {
         return LayoutMainActivity.getUsuario( activity )
@@ -123,6 +127,7 @@ abstract class LayoutFragmentPedidosModel( methods : Interfaces.LayoutFragmentBa
         return ( total / totalDeUsers ).toString()
     }
 }
+
 
 abstract class LayoutFragmentPedidosBasic(methods: Interfaces.LayoutFragmentBasic) : LayoutFragmentBasicService(methods), View.OnClickListener {
 

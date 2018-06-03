@@ -123,7 +123,6 @@ public class HttpPedido {
 				
 				return Response.ok( new Gson().toJson( collection ) ).build();
 			}
-			
 		});
 	}
 	

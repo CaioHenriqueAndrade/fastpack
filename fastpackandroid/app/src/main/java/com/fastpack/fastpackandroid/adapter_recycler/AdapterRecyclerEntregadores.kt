@@ -7,6 +7,7 @@ import com.fastpack.fastpackandroid.R
 import com.fastpack.fastpackandroid.holders.HolderEntregador
 import com.fastpack.fastpackandroid.holders.HolderNoEntregador
 import com.fastpack.fastpackandroid.interfaces.Interfaces
+import com.fastpack.fastpackandroid.objetos.Pedido
 import com.fastpack.fastpackandroid.objetos.UsuarioPrestador
 
 /**
@@ -53,5 +54,6 @@ class AdapterRecyclerEntregadores(ac: Interfaces.ActivityGetter) : AdapterRecycl
 
         return TYPE_ENTREGADOR
     }
+
 
 }

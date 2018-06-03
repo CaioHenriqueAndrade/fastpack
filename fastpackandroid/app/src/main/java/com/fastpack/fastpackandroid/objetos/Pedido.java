@@ -63,6 +63,11 @@ public class Pedido {
         return "Preço R$: " + UtilsConvert.toPreco( getValor() );
     }
 
+    public void atualizar(@NotNull Pedido newPedido) {
+        this.status = newPedido.status;
+        this.idPrestador = newPedido.getIdPrestador();
+    }
+
     @NotNull
     public CharSequence getLayoutPedidoData(@NotNull Resources resources) {
         return "Pedido de " + UtilsConvert.dataMysqlToData( horaPostado );
@@ -178,4 +183,5 @@ public class Pedido {
     public void setLocal(Local local) {
         this.local = local;
     }
+
 }
