@@ -86,6 +86,42 @@ public class MyEditText extends android.support.v7.widget.AppCompatEditText impl
         });
     }
 
+
+    public static void setEspacoNotPermited(final EditText editText) {
+
+        editText.addTextChangedListener(new TextWatcher() {
+            boolean textFoiChanged = false;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!textFoiChanged) {
+
+                    if (s.length() > 0) {
+                            if (s.toString().contains(" ")) {
+                                textFoiChanged = true;
+                                editText.setText(s.toString().replaceAll(" ", ""));
+                                editText.setSelection(editText.getText().toString().length()); //para mandar o focus para a ultima letra da string...
+                            }
+                    }
+
+                } else {
+                    textFoiChanged = false;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 

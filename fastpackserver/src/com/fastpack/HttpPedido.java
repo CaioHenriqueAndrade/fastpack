@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -25,9 +26,13 @@ import sql.ConnectionSQLException;
 import utils.ResponseManager;
 
 @Path("pedido")
-public class HttpPedido {
+public class HttpPedido extends FilterHttp{
 
 	@Context private HttpServletRequest request;
+
+	public HttpPedido(	@Context HttpHeaders headers) {
+		super( headers );
+	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

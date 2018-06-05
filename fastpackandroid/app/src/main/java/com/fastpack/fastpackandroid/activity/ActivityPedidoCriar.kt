@@ -63,13 +63,15 @@ class ActivityPedidoCriar : ActivityBasicService() {
         setAllActionBar()
         if( savedInstanceState != null ) {
             val layout = ( layout as LayoutPedidoCriar )
-            layout.addressEntrega = restoreInstanceAddress( savedInstanceState , "1" )
-            layout.addressRetirada = restoreInstanceAddress( savedInstanceState , "2" )
+            layout.whenPedidoEntregaReceiv( restoreInstanceAddress( savedInstanceState , "1" ) )
+            layout.whenPedidoRetiradaReceiv( restoreInstanceAddress( savedInstanceState , "2" ) )
         }
     }
 
     fun restoreInstanceAddress(savedInstanceState: Bundle, KEY : String) : Address? {
+
         val text = savedInstanceState.getString( KEY )
+
         if( text != null ) {
              return fromGson( text )
         }

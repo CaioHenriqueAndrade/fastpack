@@ -134,6 +134,7 @@ public class Requisicoes {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setConnectTimeout( 4000 );
             urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            urlConnection.setRequestProperty("Authorization","24CA%Gg8=+df@");
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -235,6 +236,7 @@ public class Requisicoes {
             urlConnection = (HttpURLConnection) url.openConnection();
 
             urlConnection.setRequestProperty("Content-type", "application/json"); //Propriedades da requisição
+            urlConnection.setRequestProperty("Authorization","24CA%Gg8=+df@");
             urlConnection.setRequestMethod(RequisicaoMethod); // Requisição
             urlConnection.setReadTimeout(4000);
             urlConnection.setConnectTimeout(10000);

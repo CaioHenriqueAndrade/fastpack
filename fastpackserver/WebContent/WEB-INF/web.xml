@@ -8,10 +8,10 @@
   <display-name>fastpack</display-name> <!-- Como default o nome do meu projeto, esse nome irá aparecer na URL -->
   <servlet>
     <servlet-name>fastpack</servlet-name>
+
     <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
-
 
       <param-value>com.fastpack</param-value>
 

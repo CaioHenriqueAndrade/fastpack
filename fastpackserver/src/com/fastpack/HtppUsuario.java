@@ -5,6 +5,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -22,6 +24,9 @@ import utils.ResponseManager;
 @Path("usuario")
 public class HtppUsuario {
 	
+	public HtppUsuario(	@Context HttpHeaders headers) {
+		System.out.println("httpHeader " + headers.getRequestHeaders().toString() );
+	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -38,14 +43,11 @@ public class HtppUsuario {
 					return Response.serverError().status( Usuario.RESPONSE_LOGIN_ERROR ).build();
 				}
 				
-				System.out.println("inserido com sucesso " + usuario.getId() + "  " + usuario.getCpf() );
-				
 				return Response.ok( gson.toJson( usuario ) ).build();
 			}
 			
 		});
 	}
-	
 
 	//RETORNA O LOGIN DO USUARIO VIA CPF E SENHA
 	@GET

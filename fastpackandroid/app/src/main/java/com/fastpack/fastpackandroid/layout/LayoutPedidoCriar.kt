@@ -2,6 +2,7 @@ package com.fastpack.fastpackandroid.layout
 
 import android.content.Intent
 import android.view.View
+import android.widget.TextView
 import com.fastpack.fastpackandroid.R
 import com.fastpack.fastpackandroid.activity.ActivityAddress
 import com.fastpack.fastpackandroid.activity.ActivityPedidoCriar
@@ -12,12 +13,16 @@ import com.fastpack.fastpackandroid.objetos.Address
 
 class LayoutPedidoCriar(methods: Interfaces.ActivityGetter) : LayoutPedidoCriarActionButtons(methods) {
 
-    fun whenPedidoEntregaReceiv(addressEnt : Address) {
+    override fun whenPedidoEntregaReceiv(addressEnt : Address?) {
+        if( addressEnt == null ) return
         addressEntrega = addressEnt
+        super.whenPedidoEntregaReceiv(addressEnt)
     }
 
-    fun whenPedidoRetiradaReceiv(ad : Address) {
+    override fun whenPedidoRetiradaReceiv(ad : Address?) {
+        if( ad == null ) return
         addressRetirada = ad
+        super.whenPedidoRetiradaReceiv(ad)
 
     }
 }
@@ -98,10 +103,15 @@ abstract class LayoutPedidoBasic(methods: Interfaces.ActivityGetter) : LayoutBas
     private lateinit var buttonAddressEntregar: View
     private lateinit var buttonFinalizar: View
 
+    private lateinit var txtAdEntrega : TextView
+    private lateinit var txtAdRetirada : TextView
+
     override fun recuperarReferencias(view: View) {
         buttonAddressRetirar = view.findViewById(R.id.facybutton_address1)
         buttonAddressEntregar= view.findViewById(R.id.facybutton_address2);
         buttonFinalizar      = view.findViewById(R.id.txt_button)
+        txtAdEntrega         = view.findViewById(R.id.txt_add_entrega)
+        txtAdRetirada        = view.findViewById(R.id.txt_add_busca)
     }
     override fun bindViewHolder() { }
 
@@ -127,6 +137,14 @@ abstract class LayoutPedidoBasic(methods: Interfaces.ActivityGetter) : LayoutBas
     abstract fun whenClickButtonAddressEntregar()
 
     abstract fun whenClickedButtonFinalizar()
+
+    open fun whenPedidoEntregaReceiv(addressEnt : Address?) {
+        txtAdEntrega.text = "Entrega em: ${addressEnt!!.format()}"
+    }
+
+    open fun whenPedidoRetiradaReceiv(ad : Address?) {
+        txtAdRetirada.text = "Retirar em: ${ad!!.format()}"
+    }
 
 
 }
